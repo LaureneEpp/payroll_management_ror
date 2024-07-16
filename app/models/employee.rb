@@ -44,10 +44,10 @@ class Employee < ApplicationRecord
           filename: "anonymous.jpg",
           content_type: "image/jpg",
         )
-    end
+      end
     
-    def set_default_values
+      def set_default_values
         self.position ||= Position.find_or_create_by(name: 'TBD')
         self.team ||= Team.find_or_create_by(name: 'TBD')
-    end
+      end
 end
