@@ -12,31 +12,31 @@ class Employee < ApplicationRecord
 
     def fullname
         "#{first_name.capitalize} #{last_name.capitalize}"
-      end
+    end
     
-      def avatar_thumbnail
+    def avatar_thumbnail
         avatar.variant(resize_to_limit: [300,300]).processed
-      end
+    end
       
-      def tbd_team?
+    def tbd_team?
         self.team.name == 'TBD'
-      end
+    end
     
-      def tbd_position?
+    def tbd_position?
         self.position.name == 'TBD'
-      end
+    end
     
-      def self.ransackable_attributes(_auth_object = nil)
+    def self.ransackable_attributes(_auth_object = nil)
         %w[first_name last_name]
-      end
+    end
     
-      def self.ransackable_associations(auth_object = nil)
-        ["avatar_attachment", "avatar_blob", "department", "payslip", "position", "team"]
-      end
+    def self.ransackable_associations(auth_object = nil)
+        ["avatar_attachment", "avatar_blob", "departement", "payslip", "position", "team"]
+    end
     
-      private
+    private
     
-      def add_default_avatar
+    def add_default_avatar
         return if self.avatar.attached?
         avatar.attach(
           io:
