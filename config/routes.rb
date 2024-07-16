@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   root 'pages#dashboard' # shortcut for the abov
   resources :employees
-  resources :departements, only: [:index, :show] do
+  resources :departments, only: [:index, :show] do
     resources :teams, only: [:show]
   end
   
