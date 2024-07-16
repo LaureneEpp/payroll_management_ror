@@ -1,4 +1,4 @@
-class Departement < ApplicationRecord
+class Department < ApplicationRecord
     has_many :teams
     has_many :employees, through: :teams
 

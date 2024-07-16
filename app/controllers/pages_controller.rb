@@ -3,7 +3,7 @@ class PagesController < ApplicationController
       @employees_count = Employee.count
       # @tbd_position = Employee.where(position: 'TBD')
       # @tbd_team = Employee.where(team: 'TBD')
-      # @tbd_dpt = Team.joins(:departement).where(departements: {name: 'TBD'})
+      # @tbd_dpt = Team.joins(:department).where(departments: {name: 'TBD'})
       @employees = Employee.all.order('last_name ASC').excluding(@tbd_employees)
       @managers = Employee.where(manager: true).order('last_name ASC')
       @employee = Employee.new
