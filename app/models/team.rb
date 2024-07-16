@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
     has_many :employees
-    belongs_to :departement
+    belongs_to :department
 
     validates :name, uniqueness: true
     # enum :name, { 
