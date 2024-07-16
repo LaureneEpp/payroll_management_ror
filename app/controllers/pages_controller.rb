@@ -9,4 +9,4 @@ class PagesController < ApplicationController
       @employee = Employee.new
       @tbd_employees = Employee.joins(:position, :team).where("positions.name = 'TBD' OR teams.name = 'TBD'")
     end
-  end
+end
