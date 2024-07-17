@@ -1,9 +1,9 @@
 class Employee < ApplicationRecord
-    belongs_to :team, optional: true
-    has_many :payslip
+  belongs_to :team, optional: true
+  has_many :payslip
   
-    has_one :department, through: :team
-    belongs_to :position, optional: true
+  has_one :department, through: :team
+  belongs_to :position, optional: true
   
     has_one_attached :avatar
     after_commit :add_default_avatar, on: %i[create update]
@@ -44,7 +44,7 @@ class Employee < ApplicationRecord
           filename: "anonymous.jpg",
           content_type: "image/jpg",
         )
-      end
+    end
     
       def set_default_values
         self.position ||= Position.find_or_create_by(name: 'TBD')
