@@ -3,7 +3,7 @@ class DepartmentsController < ApplicationController
 
   def index
     @tbd_dpt = Department.where(name: 'TBD')
-    @departments = Departement.all.order('name ASC').excluding(@tbd_dpt)
+    @departments = Department.all.order('name ASC').excluding(@tbd_dpt)
     Team.new
   end
 
