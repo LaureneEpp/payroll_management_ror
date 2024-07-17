@@ -1,0 +1,19 @@
+<%= simple_form_for @employee, remote: true, html: { class: " p-2 mt-3"}, data: { turbo_frame: "_top" } do |f| %>
+  <div class="form-inputs">
+    <%= f.input :first_name, input_html: { autocomplete: false }, label_html: { class: 'py-2'} %>
+    <%= f.input :last_name, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
+    <%= f.input :email, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
+    <%= f.input :city, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
+    <%= f.input :country, priority: [ "Belgium" ], input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
+    <div class="flex flex-col my-4">
+      <%= f.collection_select :team_id, Team.all, :id, :name, prompt: "Select a team", default: 'To be defined', wrapper_html: { class: 'py-2'}, required: false   %>
+      <%= f.collection_select :position_id, Position.all, :id, :name, prompt: "Select a position", default: 'To be defined', required: false %>
+      <h2 class="py-2 font-semibold">Is the new employee a manager?</h2>
+      <%= f.input :manager, as: :boolean, default: false, input_html: { unchecked: false } %>
+    </div>
+  </div>
+  <div class="px-4 py-3 sm:flex sm:flex-row sm:px-6">
+    <%= link_to 'Cancel', employees_path, data: { turbo: false }, class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-50 sm:mt-0 sm:w-auto" %>  
+    <%= f.submit 'Ok?', class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-50 sm:mt-0 sm:w-auto" %>
+  </div>
+<% end %>
