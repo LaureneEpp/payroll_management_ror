@@ -1,4 +1,4 @@
-<%= simple_form_for @team, remote: true, html: { class: " p-2 mt-3"}, data: { turbo_frame: "_top" } do |f| %>
+<%= simple_form_for @team, html: { class: " p-2 mt-3"}, data: { turbo: false } do |f| %>
   <div class="form-inputs">
     <%= f.input :name, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
     <%= f.input :description, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="px-4 py-3 sm:flex sm:flex-row sm:px-6">
-    <%= link_to 'Cancel', departments_path, data: { turbo: false }, class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-50 sm:mt-0 sm:w-auto" %>  
+    <%= link_to "Cancel", departments_path, data: { turbo: false }, class: "bg-slate-100 rounded px-4 py-2 text-center text-slate-700 font-medium hover:bg-slate-200 focus:ring-4 focus:ring-slate-100 no-underline inline-block" %>
     <%= f.submit 'Ok?', class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-50 sm:mt-0 sm:w-auto" %>
   </div>
 <% end %>
