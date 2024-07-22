@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="px-4 py-3 sm:flex sm:flex-row sm:px-6">
-    <%= link_to "Cancel", departments_path, data: { turbo: false }, class: "bg-slate-100 rounded px-4 py-2 text-center text-slate-700 font-medium hover:bg-slate-200 focus:ring-4 focus:ring-slate-100 no-underline inline-block" %>
-    <%= f.submit 'Ok?', class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-inset ring-gray-800 hover:bg-gray-50 sm:mt-0 sm:w-auto" %>
+    <%= link_to "Cancel", departments_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>
+    <%= f.submit 'Ok?', class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-medium-emerald shadow-sm ring-1 ring-inset ring-medium-emerald hover:bg-medium-emerald hover:text-white sm:mt-0 sm:w-auto" %>
   </div>
 <% end %>
