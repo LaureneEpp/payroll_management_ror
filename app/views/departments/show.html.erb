@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "modal" do %>
-  <div id="overlay" class="fixed inset-0" data-controller="modal" data-modal-target="frame"><div>
-    <div  id="modal" class="bg-transparent" data-modal-target="modal">
+  <div id="overlay" class="fixed inset-0 z-10" data-controller="modal" data-modal-target="frame">
+    <div  class="modal bg-transparent" data-modal-target="modal">
         <button type="button" class="sm:mx-0 w-full text-white font-wold text-xl flex justify-end py-3 my-3" data-action="click->modal#close">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
             	<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -21,4 +21,5 @@
         	<% end %>
 		</div>
     </div>
+<div>
 <% end %>
