@@ -16,11 +16,13 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-
-    if @team.save
-      redirect_to departments_path, notice: 'A new team was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @team.save
+        format.turbo_stream
+        format.html { redirect_to departments_path, notice: "Team was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 

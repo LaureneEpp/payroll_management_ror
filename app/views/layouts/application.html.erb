@@ -12,6 +12,8 @@
   </head>
 
   <body class="bg-light-rose h-screen w-screen">
-      <%= yield %>
+    <%= turbo_frame_tag "modal" %>
+    <%= turbo_frame_tag "new_team_modal" %>
+    <%= yield %>
   </body>
 </html>

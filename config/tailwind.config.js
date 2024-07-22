@@ -24,9 +24,24 @@ module.exports = {
       'dark-purple': '#9333ea', 
       'light-gray': '#f3f4f6',
       'medium-gray': '#d1d5db',
-      'dark-gray': '#6b7280'
-
+      'dark-gray': '#6b7280',
+      'dark-indigo': '#312e81'
     },
+    keyframes: {
+      'fade-in-up': {
+        '0%': {
+          opacity: '0',
+          transform: 'translateY(10px)'
+        },
+        '100%': {
+          opacity: '1',
+          transform: 'translateY(0)'
+        },
+      }
+    },
+    animation :{
+      'fade-in-up': 'fade-in-up 0.3s ease-in-out'
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
