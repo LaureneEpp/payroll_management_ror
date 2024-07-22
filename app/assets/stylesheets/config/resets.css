@@ -15,34 +15,3 @@
         background-size: 100% 100%;
     }
   }
-
-  /* .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-  } */
-
-  #overlay {
-    z-index: 30;
-  }
-
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  dialog {
-    width: 80vw;
-    margin: auto;
-   
-    &::backdrop {
-      background: red;
-      opacity: 0.2;
-    }
-   
-    header {
-      display: flex;
-      align-items: center;
-   
-      h2 {
-        flex: 0 1 100%;
-      }
-    }
-  }

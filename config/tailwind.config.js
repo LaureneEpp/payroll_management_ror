@@ -24,8 +24,8 @@ module.exports = {
       'dark-purple': '#9333ea', 
       'light-gray': '#f3f4f6',
       'medium-gray': '#d1d5db',
-      'dark-gray': '#6b7280'
-
+      'dark-gray': '#6b7280',
+      'dark-indigo': '#312e81'
     },
     keyframes: {
       'fade-in-up': {

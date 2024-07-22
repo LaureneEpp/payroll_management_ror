@@ -12,6 +12,7 @@
   </head>
 
   <body class="bg-light-rose h-screen w-screen">
-      <%= yield %>
+    <%= turbo_frame_tag "modal" %>
+    <%= yield %>
   </body>
 </html>
