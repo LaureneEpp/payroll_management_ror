@@ -11,7 +11,7 @@
             	<h1 class="uppercase text-start text-white font-bold text-xl">There is not team associated to this departement!</h1>
         	<% else %>
             	<h1 class="uppercase text-start text-white font-bold text-xl"><%= @department.teams.count %> teams in <%= @department.name %></h1>
-				<div  class="grid grid-row-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex">
+				<div  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 				<% @department.teams.each do |t| %>
 					<div class="rounded-full bg-dark-purple text-white w-48 h-48 flex align-center justify-center items-center my-3 mx-3">
 						<h2 class="text-xl font-semibold"><%= link_to t.name, department_team_path(@department.id, t) , data: { turbo_frame: "_top" }  %></h2>
