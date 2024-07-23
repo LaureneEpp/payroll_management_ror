@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   
   root 'pages#dashboard' # shortcut for the abov
   resources :employees

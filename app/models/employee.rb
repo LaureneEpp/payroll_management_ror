@@ -1,4 +1,5 @@
 class Employee < ApplicationRecord
+  belongs_to :user
   belongs_to :team, optional: true
   has_many :payslip
   
