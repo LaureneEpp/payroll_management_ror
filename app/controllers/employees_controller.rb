@@ -22,13 +22,27 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-
-    if @employee.save
-      redirect_to employee_path(@employee), notice: 'Employee was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @employee.save
+        format.turbo_stream
+        format.html { redirect_to employee_path(@employee), notice: "Employee was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
+
+  # def create
+  #   @employee = Employee.new(employee_params)
+
+  #   if @employee.save
+  #     redirect_to employee_path(@employee), notice: 'Employee was successfully created.'
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
+
+
 
   def update
     if @employee.update(employee_params)
