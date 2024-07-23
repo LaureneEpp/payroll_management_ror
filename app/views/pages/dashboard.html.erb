@@ -1,88 +1,88 @@
 <div class="p-6 sm:p-10 h-screen w-screen">
   <header class="flex flex-col p-12 space-y-6 md:space-y-0 md:flex-row justify-between">
-    <h1 class="text-4xl font-semibold mb-2">Dashboard</h1>
+    <h2 class="text-4xl font-semibold mb-2">Dashboard</h2>
     <%= link_to 'New employee', new_employee_path, data: { turbo_frame: "new_modal" }, class:'flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded' %>
   </header>
   <main>
-    <article class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-      <div class="flex items-center p-8 bg-white shadow rounded-lg">
+    <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <article class="flex items-center p-8 bg-white shadow rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple  rounded-full mr-6">
           <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         </div>
-        <div>
-          <span class="block text-2xl font-bold"><%= @employees_count %></span>
-          <span class="block text-gray-500">Employees</span>
-        </div>
-      </div>
-      <div class="flex items-center p-8 bg-white shadow rounded-lg">
+        <section>
+          <h4 class="block text-gray-500">Employees</h4>
+          <p class="block text-2xl font-bold"><%= @employees_count %></p>
+        </section>
+      </article>
+      <article class="flex items-center p-8 bg-white shadow rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
           <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         </div>
-        <div>
-          <span class="block text-2xl font-bold"><%= @managers.count %></span>
-          <span class="block text-gray-500">Managers</span>
-        </div>
-      </div>
-      <div class="row-span-3 bg-white shadow rounded-lg">
-        <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
-          <span>All employees</span>
-        </div>
-        <div class="overflow-y-auto" style="max-height: 24rem;">
+        <section>
+          <h4 class="block text-gray-500">Managers</h4>
+          <p class="block text-2xl font-bold"><%= @managers.count %></p>
+        </section>
+      </article>
+      <article class="row-span-3 bg-white shadow rounded-lg">
+        <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+          <h3>All employees</h3>
+        </header>
+        <section class="overflow-y-auto" style="max-height: 24rem;">
           <ul class="p-6 space-y-6">
             <% @employees.each do |employee| %>
               <li class="flex items-center">
-                <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                   <%= image_tag(employee.avatar, class: "w-full h-full object-cover") %>
-                </div>
-                <span class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></span>
-                <span class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></span>
+                </figure>
+                <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
+                <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
               </li>
             <% end %>
           </ul>
-        </div>
-      </div>
-      <div class="row-span-3 bg-white shadow rounded-lg">
-        <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
-          <span>Managers</span>
-        </div>
-        <div class="overflow-y-auto" style="max-height: 24rem;">
+        </section>
+      </article>
+      <article class="row-span-3 bg-white shadow rounded-lg">
+        <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+          <h3>Managers</h3>
+        </header>
+        <section class="overflow-y-auto" style="max-height: 24rem;">
           <ul class="p-6 space-y-6">
             <% @managers.each do |manager| %>
               <li class="flex items-center">
-                <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                   <%= image_tag(manager.avatar, class: "w-full h-full object-cover") %>
-                </div>
-                <span class="flex-1 w-1/2 break-words text-gray-600"><%= link_to manager.fullname, employee_path(manager) %></span>
-                <span class="flex-1 w-1/2 break-words ml-auto font-semibold text-end"><%= manager.department.name %></span>
+                </figure>
+                <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to manager.fullname, employee_path(manager) %></p>
+                <p class="flex-1 w-1/2 break-words ml-auto font-semibold text-end"><%= manager.department.name %></p>
               </li>
             <% end %>
           </ul>
-        </div>
-      </div>
+        </section>
+      <article>
       <% if @tbd_employees.present? %>
-        <div class="row-span-3 bg-teal-500 shadow rounded-lg">
-          <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
-            <span class="font-semibold">FOR ACTION - Information to be defined</span>
-          </div>
-          <div class="overflow-y-auto" style="max-height: 24rem;">
+        <article class="row-span-3 bg-teal-500 shadow rounded-lg">
+          <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+            <h3 class="font-semibold">FOR ACTION - Information to be defined</h3>
+          </header>
+          <section class="overflow-y-auto" style="max-height: 24rem;">
             <ul class="p-6 space-y-6">
               <% @tbd_employees.each do |employee| %>
                 <li class="flex items-center">
-                  <div class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                  <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
                     <%= image_tag(employee.avatar, class: "w-full h-full object-cover") %>
-                  </div>
-                  <span class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></span>
-                  <span class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></span>
+                  </figure>
+                  <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
+                  <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
                 </li>
               <% end %>
             </ul>
-          </div>
-        </div>
+          </section>
+        </article>
       <% end %>
-    </article>
+    </section>
   </main>
 </div>
