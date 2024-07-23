@@ -1,22 +1,22 @@
 <div class="flex flex-col p-6 sm:p-10 space-y-6 relative h-screen w-screen">
-  <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
+  <header class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between my-3">
     <h1 class="text-4xl font-semibold mb-2">Departments Dashboard</h1>
       <%= link_to "New team", new_team_path, class:"flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded m-auto", data: { turbo_frame: "new_modal" } %>
-  </div>
-  <div class="flex flex-col overflow-y-auto px-5 py-3">
-    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 py-6" >
+  </header>
+  <main class="flex flex-col overflow-y-auto px-5 py-3">
+    <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 py-6" >
       <% @departments.each do |d| %>
         <%= link_to department_path(d), class: "btn-ouline box flex items-center p-8 bg-white shadow rounded-lg", data: { turbo_frame: "modal"} do %>
           <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light rounded-full mr-6">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8" aria-hidden="true">
               <path fill-rule="evenodd" d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 011.5 10.875v-3.75zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 01-1.875-1.875v-8.25zM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 013 18.375v-2.25z" clip-rule="evenodd" />
             </svg>
           </div>
-          <div>
-            <span class="block text-2xl font-bold"><%= d.name %></span>
-          </div>
+          <article>
+            <p class="block text-2xl font-bold"><%= d.name %></p>
+          </article>
         <% end %>
       <% end %>
-    </div>
-  </div>
+    </section>
+  </main>
 </div>
