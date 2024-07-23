@@ -1,11 +1,11 @@
 <%= simple_form_for @team, html: { class: " p-2 mt-3"}, data: { turbo: false } do |f| %>
   <form>
     <fieldset class="form-inputs">
-      <%= f.input :name, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
-      <%= f.input :description, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
+      <%= f.input :name, input_html: { autocomplete: false }, label_html: { class: 'text-base font-medium py-2'}  %>
+      <%= f.input :description, input_html: { autocomplete: false }, label_html: { class: 'text-base font-medium py-2'}  %>
     </fieldset>
     <fieldset class="flex flex-col mt-4">
-      <%= f.collection_select :department_id, Department.all, :id, :name, label_html: {class: 'py-2'}, prompt: "Select a department", wrapper_html: { class: 'rounded-md py-2'} %>
+      <%= f.collection_select :department_id, Department.all, :id, :name, label_html: {class: 'text-base font-medium py-2'}, prompt: "Select a department", wrapper_html: { class: 'rounded-md py-2'} %>
     </fieldset>
     <fieldset class="mt-4 sm:flex sm:flex-row">
       <%= link_to "Cancel", departments_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>
