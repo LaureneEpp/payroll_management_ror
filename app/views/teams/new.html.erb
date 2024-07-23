@@ -1,9 +1,10 @@
 <%= turbo_frame_tag "new_team_modal" do %>
   <div id="overlay" class="fixed inset-0 z-10" data-controller="modal" data-modal-target="frame">
-    <div class="modal bg-white" style="width: 75%" data-modal-target="modal">
-      <h1 id="modal-title" class="dark:text-slate-100">New team</h1>
-      <%= render "form", team: @team %>
-      <%= button_tag "Close", data: { action: "modal#close" }, type: "button", class: "rounded-lg py-3 px-5 bg-red-600 text-white" %>
-    </div>
-    <div>
+    <dialog class="modal bg-white" style="width: 75%" data-modal-target="modal">
+      <header>
+        <h1 id="modal-title" class="font-bold text-xl text-center uppercase p-4">New team</h1>
+      </header>
+        <%= render "form", team: @team %>
+    </dialog>
+  </div>
 <% end %>
