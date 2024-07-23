@@ -1,4 +1,4 @@
-<%= simple_form_for @employee, remote: true, html: { class: " p-2 mt-3"}, data: { turbo_frame: "_top" } do |f| %>
+<%= simple_form_for @employee, html: { class: " p-2 mt-3"}, data: { turbo: false } do |f| %>
   <div class="form-inputs">
     <%= f.input :first_name, input_html: { autocomplete: false }, label_html: { class: 'py-2'} %>
     <%= f.input :last_name, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>

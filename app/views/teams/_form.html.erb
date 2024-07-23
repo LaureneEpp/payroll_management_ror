@@ -1,14 +1,15 @@
 <%= simple_form_for @team, html: { class: " p-2 mt-3"}, data: { turbo: false } do |f| %>
-
-  <div class="form-inputs">
-    <%= f.input :name, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
-    <%= f.input :description, input_html: { autocomplete: false }, label_html: { class: 'py-2'}  %>
-    <div class="flex flex-col my-4">
-      <%= f.collection_select :department_id, Department.all, :id, :name, prompt: "Select a department", wrapper_html: { class: 'py-2'}   %>
-    </div>
-  </div>
-  <div class="px-4 py-3 sm:flex sm:flex-row sm:px-6">
-    <%= link_to "Cancel", departments_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>
-    <%= f.submit 'Ok?', class:"ml-2 rounded-md px-3 py-2 text-sm font-semibold text-medium-emerald shadow-sm ring-1 ring-inset ring-medium-emerald hover:bg-medium-emerald hover:text-white sm:mt-0 sm:w-auto" %>
-  </div>
+  <form>
+    <fieldset class="form-inputs">
+      <%= f.input :name, input_html: { autocomplete: false }, label_html: { class: 'text-base font-medium py-2'}  %>
+      <%= f.input :description, input_html: { autocomplete: false }, label_html: { class: 'text-base font-medium py-2'}  %>
+    </fieldset>
+    <fieldset class="flex flex-col mt-4">
+      <%= f.collection_select :department_id, Department.all, :id, :name, label_html: {class: 'text-base font-medium py-2'}, prompt: "Select a department", wrapper_html: { class: 'rounded-md py-2'} %>
+    </fieldset>
+    <fieldset class="mt-4 sm:flex sm:flex-row">
+      <%= link_to "Cancel", departments_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>
+      <%= f.submit 'Ok?', class:"ml-2 rounded-md px-4 py-2 text-sm font-semibold text-medium-emerald shadow-sm ring-1 ring-inset ring-medium-emerald hover:bg-medium-emerald hover:text-white sm:mt-0 sm:w-auto" %>
+    </fieldset>
+  </form>
 <% end %>
