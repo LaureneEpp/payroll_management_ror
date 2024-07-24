@@ -49,9 +49,12 @@
                 <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
               </svg>
             <% end %>
-            <!-- Add Login and Logout Links -->
             <% if user_signed_in? %>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" %>
+              <%= button_to  destroy_user_session_path, method: :delete, class: "btn rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+              <% end %>
             <% else %>
               <%= link_to 'Login', new_user_session_path, class: "rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" %>
             <% end %>
@@ -81,7 +84,8 @@
           <div data-navbar-target="userMenu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-light-gray py-1 shadow-lg ring-1 ring-light-purple ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <% if user_signed_in? %>
               <a href="<%= edit_user_registration_path %>" class="block px-4 py-2 text-base text-dark-purple" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-base text-dark-purple" %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-base text-dark-purple" %>
+
             <% else %>
               <a href="<%= new_user_session_path %>" class="block px-4 py-2 text-base text-dark-purple" role="menuitem" tabindex="-1" id="user-menu-item-0">Login</a>
             <% end %>
@@ -99,7 +103,7 @@
       <%= link_to 'Teams', teams_path, class:"block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
       <!-- Add Login and Logout Links to Mobile Menu -->
       <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
       <% else %>
         <%= link_to 'Login', new_user_session_path, class: "block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
       <% end %>
