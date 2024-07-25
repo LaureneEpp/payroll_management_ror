@@ -5,13 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
+  # create new employee with new user
   def new
-    # super
     build_resource({})
     resource.build_employee
     respond_with resource
-
-
   end
 
   # POST /resource
