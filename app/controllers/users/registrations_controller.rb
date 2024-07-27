@@ -14,18 +14,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   super
+  #   super 
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    resource.build_employee
+    respond_with resource.employee
+    
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    # if resource.update(resource_params)
+    #   redirect_to resource_path(resource), notice: "Employee was successfully updated."
+    # else
+    #   render :edit, status: :unprocessable_entity
+    # end
+  end
 
   # DELETE /resource
   # def destroy
@@ -45,14 +52,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    # devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id]])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :attributes])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    devise_parameter_sanitizer.permit(:account_update, keys: [employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id]])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :attributes])
   end
 
   # The path used after sign up.
