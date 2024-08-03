@@ -5,7 +5,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # create new employee with new user
   def new
     build_resource({})
     resource.build_employee
@@ -13,68 +12,74 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super 
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   def edit
-    resource.build_employee
-    respond_with resource.employee
-    
+    # resource.build_employee unless resource.employee
+    # respond_with resource
+    super
   end
 
   # PUT /resource
   def update
-    super
-    # if resource.update(resource_params)
-    #   redirect_to resource_path(resource), notice: "Employee was successfully updated."
-    # else
-    #   render :edit, status: :unprocessable_entity
-    # end
+    resource_updated = update_resource(resource, account_update_params)
+    
+    respond_to do |format|
+      if resource_updated
+        bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+        format.turbo_stream
+        format.html { redirect_to after_update_path_for(resource) }
+      else
+        format.html { render :edit }
+        format.turbo_stream
+      end
+    end
   end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
-
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
+  def destroy
+    super
+  end
 
   protected
 
-  # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :attributes])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id]])
   end
 
-  # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :attributes])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id]])
   end
 
-  # The path used after sign up.
   def after_sign_up_path_for(resource)
     super(resource)
   end
 
-  # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
   
+  def update_resource(resource, params)
+    resource.update(params)
+  end
+
+  def after_update_path_for(resource)
+    # super(resource)
+    root_path
+  end
+
+
+  private
+
   def sign_up_params
     params.require(:user).permit(:email, :password, :password_confirmation, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id])
   end
 
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id])
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, employee_attributes: [:id, :first_name, :last_name, :city, :country, :manager, :team_id, :position_id, :_destroy])
   end
 end
+
