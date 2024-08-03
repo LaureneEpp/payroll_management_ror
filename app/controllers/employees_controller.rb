@@ -15,6 +15,7 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    @employee.build_user
   end
 
   def edit
@@ -31,18 +32,6 @@ class EmployeesController < ApplicationController
       end
     end
   end
-
-  # def create
-  #   @employee = Employee.new(employee_params)
-
-  #   if @employee.save
-  #     redirect_to employee_path(@employee), notice: 'Employee was successfully created.'
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
-
-
 
   def update
     if @employee.update(employee_params)
@@ -67,6 +56,6 @@ class EmployeesController < ApplicationController
     end
 
     def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :email, :manager, :team_id, :position_id, :city, :country, :avatar)
+      params.require(:employee).permit(:first_name, :last_name, :email, :city, :country, :manager, :team_id, :position_id, user_attributes: [:email, :password, :password_confirmation])
     end
 end

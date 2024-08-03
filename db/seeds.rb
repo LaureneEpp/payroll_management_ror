@@ -6,6 +6,7 @@ require 'faker'
 # PayslipDeduction.delete_all
 Payslip.delete_all
 Employee.delete_all
+User.delete_all
 Allowance.delete_all
 Deduction.delete_all
 Position.delete_all
@@ -40,17 +41,23 @@ puts "#{Position.count} positions have been created."
 10.times do
   team_id = Team.pluck(:id).sample
   position_id = Position.pluck(:id).sample
-  employee = Employee.create(
+  user = User.create!(
+    email: Faker::Internet.email,
+    password: 'password',
+    password_confirmation: 'password'
+  )
+  employee = Employee.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
+    email: user.email,
     manager: Faker::Boolean.boolean,
     team_id: team_id,
     position_id: position_id,
     city: Faker::Address.city,
-    country: Faker::Address.country
+    country: Faker::Address.country,
+    user: user
   )
-  puts "Employee '#{employee.first_name} #{employee.last_name}' created"
+  puts "Employee '#{employee.first_name} #{employee.last_name}' created with user '#{user.email}'"
 end
 puts "#{Employee.count} employees have been created."
 
