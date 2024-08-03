@@ -1,0 +1,37 @@
+<h1>Profile</h1>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<% if @user.employee.present? %>
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.employee.first_name %>
+  </p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.employee.last_name %>
+  </p>
+  <p>
+    <strong>City:</strong>
+    <%= @user.employee.city %>
+  </p>
+  <p>
+    <strong>Country:</strong>
+    <%= @user.employee.country %>
+  </p>
+  <p>
+    <strong>Manager:</strong>
+    <%= @user.employee.manager %>
+  </p>
+  <p>
+    <strong>Team:</strong>
+    <%= @user.employee.team.name if @user.employee.team.present? %>
+  </p>
+  <p>
+    <strong>Position:</strong>
+    <%= @user.employee.position.name if @user.employee.position.present? %>
+  </p>
+<% end %>
