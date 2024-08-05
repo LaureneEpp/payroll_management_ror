@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  
-  root 'pages#dashboard' # shortcut for the abov
+  # resources :users, only: [:show]
+  get 'profile', to: 'users#show', as: 'profile'
+
+
+  root 'pages#dashboard'
   resources :employees
   resources :departments, only: [:index, :show] do
     resources :teams, only: [:show]
