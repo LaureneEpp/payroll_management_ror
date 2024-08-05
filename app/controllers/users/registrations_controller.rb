@@ -18,8 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    # resource.build_employee unless resource.employee
-    # respond_with resource
     super
   end
 
@@ -67,8 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    user_path(resource)
-    # root_path
+    profile_path
   end
 
 
