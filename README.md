@@ -1,34 +1,19 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-# payroll_management_ror
-=======
->>>>>>> 3d408f1e24ad19eb0b20a6e5479dc92224f09be7
-# README
+# Payroll Management System [WIP]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+The Payroll Management System is a Ruby on Rails application designed to manage employee payrolls efficiently. The application includes features such as employee management, team and department assignments, and position tracking.
 
-* Ruby version
+## Features
 
-* System dependencies
+- **User Authentication**: Secure sign-in and sign-out functionality using Devise.
+- **Employee Management**: Create, read, update, and delete operations for employees.
+- **Teams and Departments**: Assign employees to teams and departments.
+- **Positions**: Manage employee positions within the organization.
+- **Profile Management**: Users can view and edit their profiles.
 
-* Configuration
+## Technologies Used
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-<<<<<<< HEAD
-=======
->>>>>>> 9772b46 (create rails app)
->>>>>>> 3d408f1e24ad19eb0b20a6e5479dc92224f09be7
+- **Ruby on Rails**: Backend framework.
+- **PostgreSQL**: Database management system.
+- **Devise**: Authentication solution for Rails.
