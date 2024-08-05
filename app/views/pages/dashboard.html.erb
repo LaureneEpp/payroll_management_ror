@@ -5,7 +5,7 @@
       <%= link_to 'New employee', new_employee_path, data: { turbo_frame: "new_modal" }, class:'flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded' %>
     <% end %>
   </header>
-  <main>
+  <main class="pb-4">
     <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       <article class="flex items-center p-8 bg-white shadow rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple  rounded-full mr-6">
@@ -31,7 +31,7 @@
       </article>
       <article class="row-span-3 bg-white shadow rounded-lg">
         <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
-          <h3>All employees</h3>
+          <h3>Employees</h3>
         </header>
         <section class="overflow-y-auto" style="max-height: 24rem;">
           <ul class="p-6 space-y-6">
@@ -72,9 +72,33 @@
             <% end %>
           </ul>
         </section>
-      <article>
-      <% if @tbd_employees.present? %>
-        <article class="row-span-3 bg-teal-500 shadow rounded-lg">
+      </article>
+      <article class="row-span-3 bg-white shadow rounded-lg">
+        <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+          <h3>Teams</h3>
+        </header>
+        <section class="overflow-y-auto" style="max-height: 24rem;">
+          <ul class="p-6 space-y-6">
+            <% @teams.each do |team| %>
+              <li class="flex items-center">
+                <div class="inline-flex flex-shrink-0 items-center justify-center h-12 w-12 text-dark-purple bg-light-purple rounded-full mr-6" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+                    <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
+                  </svg>
+                </div>
+                <% if user_signed_in?%>
+                  <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to team.name, department_team_path(team.department, team) %></p>
+                <% else %>
+                  <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= team.name %></a></p>                
+                <% end %>
+                <p class="flex-1 w-1/2 break-words ml-auto font-semibold text-end"><%= team.department.name %></p>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+      </article>
+      <% if @tbd_employees.present? || @tbd_dpt.present?%>
+        <article class="row-span-3 bg-white shadow rounded-lg">
           <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
             <h3 class="font-semibold">FOR ACTION - Information to be defined</h3>
           </header>
@@ -88,6 +112,17 @@
                   <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
                   <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
                 </li>
+              <% end %>
+              <%@tbd_dpt.each do |team|%>
+                <li class="flex items-center">
+                  <div class="inline-flex flex-shrink-0 items-center justify-center h-12 w-12 text-dark-purple bg-light-purple rounded-full mr-6" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+                      <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
+                    </svg>
+                  </div>
+                  <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to team.name, department_team_path(team.department, team) %></p>
+                  <p class="flex-1 w-1/2 break-words ml-auto font-semibold text-end"><%= team.department.name %></p>
+                </li>   
               <% end %>
             </ul>
           </section>
