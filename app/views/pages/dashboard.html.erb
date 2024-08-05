@@ -5,7 +5,7 @@
       <%= link_to 'New employee', new_employee_path, data: { turbo_frame: "new_modal" }, class:'flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded' %>
     <% end %>
   </header>
-  <main>
+  <main class="pb-4">
     <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       <article class="flex items-center p-8 bg-white shadow rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple  rounded-full mr-6">
@@ -72,9 +72,9 @@
             <% end %>
           </ul>
         </section>
-      <article>
+      </article>
       <% if @tbd_employees.present? %>
-        <article class="row-span-3 bg-teal-500 shadow rounded-lg">
+        <article class="row-span-3 bg-white shadow rounded-lg">
           <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
             <h3 class="font-semibold">FOR ACTION - Information to be defined</h3>
           </header>
