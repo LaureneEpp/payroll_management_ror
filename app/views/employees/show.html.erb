@@ -59,12 +59,8 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Team</h4>
-                        <% if @employee.tbd_team? %>
-                            <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= @employee.team.name.capitalize %></p>
-                        <% else %>
-                            <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= @employee.team.name.capitalize %> in <%= @employee.department.name.capitalize %></p>
-                        <% end %>
-                        
+                        <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= link_to @employee.team.name.capitalize, department_team_path(@employee.team) %></p>
+                     
                     </section>
                 </article>
                 <article class="flex items-center p-8 bg-white shadow rounded-lg">
