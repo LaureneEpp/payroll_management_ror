@@ -44,9 +44,11 @@
               <div class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer" >
                 <%= render 'search/form' %>
               </div>
+<!--
               <%= button_to  destroy_user_session_path, method: :delete, class: "btn rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" do %>
                 <%= svg_icon('logout', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill:"none", stroke: 'currentColor', class: 'w-8 h-8', aria_hidden:true, stroke_width:1.5) %>
               <% end %>
+-->
             <% else %>
               <%= link_to new_user_session_path, class: "rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" do %>
                 <%= svg_icon('sign-in', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', class: 'w-8 h-8', aria:{hidden:true}) %>
@@ -94,8 +96,10 @@
       <%= link_to 'Teams', teams_path, class:"block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
       <!-- Add Login and Logout Links to Mobile Menu -->
       <% if user_signed_in? %>
+      <!--
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
       <% else %>
+      -->
         <%= link_to 'Login', new_user_session_path, class: "block rounded-md px-3 py-2 text-base font-medium text-light-purple hover:text-light-gray" %>
       <% end %>
     </div>
