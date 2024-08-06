@@ -1,15 +1,15 @@
 <div class="flex flex-col p-6 sm:p-10 space-y-6 relative h-screen w-screen">
-  <header class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between my-3 px-5">
-    <h1 class="text-4xl font-semibold mb-2">Departments Dashboard</h1>
+  <header class="flex flex-col items-center py-6 space-y-6 md:space-y-0 md:flex-row justify-between">
+    <h2 class="text-3xl font-extrabold leading-none tracking-tight md:text-4xl lg:text-5xl ">Departments</h2>
     <% if user_signed_in? %>
-      <%= link_to "New team", new_team_path, class:"flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded m-auto", data: { turbo_frame: "new_modal" } %>
+      <%= link_to "New team", new_team_path, class:"flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded", data: { turbo_frame: "new_modal" } %>
     <% end %>
   </header>
-  <main class="flex flex-col overflow-y-auto px-5 py-3">
+  <main class="flex flex-col overflow-y-auto px-5">
     <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 py-6" >
       <% @departments.each do |d| %>
-        <%= link_to department_path(d), class: "btn-ouline box flex items-center p-8 bg-white shadow rounded-lg", data: { turbo_frame: "modal"} do %>
-          <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
+        <%= link_to department_path(d), class: "btn-ouline box flex items-center p-8 bg-white  shadow-lg hover:shadow-xl drop-shadow-xl rounded-lg", data: { turbo_frame: "modal"} do %>
+          <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6 ">
             <%= svg_icon('departments', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', class: 'w-8 h-8', aria:{hidden:true}) %>
           </div>
           <article>
