@@ -1,13 +1,13 @@
 <div class="p-6 sm:p-10 h-screen w-screen">
-  <header class="flex flex-col p-12 space-y-6 md:space-y-0 md:flex-row justify-between">
-    <h2 class="text-4xl font-semibold mb-2">Dashboard</h2>
+  <header class="flex flex-col items-center py-12 space-y-6 md:space-y-0 md:flex-row justify-between">
+    <h2 class="mb-4 text-4xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl ">Dashboard</h2>
     <% if user_signed_in? %>
       <%= link_to 'New employee', new_employee_path, data: { turbo_frame: "new_modal" }, class:'flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded' %>
     <% end %>
   </header>
   <main class="pb-4">
     <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-      <article class="flex items-center p-8 bg-white shadow rounded-lg">
+      <article class="flex items-center p-8 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple  rounded-full mr-6">
           <%= svg_icon('people', xmlns: 'http://www.w3.org/2000/svg', aria: {hidden:"true"}, viewBox: '0 0 24 24', fill: 'none', stroke: "currentColor", class: 'w-6 h-6') %>
         </div>
@@ -16,7 +16,7 @@
           <p class="block text-2xl font-bold"><%= @employees_count %></p>
         </section>
       </article>
-      <article class="flex items-center p-8 bg-white shadow rounded-lg">
+      <article class="flex items-center p-8 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
           <%= svg_icon('people', xmlns: 'http://www.w3.org/2000/svg', aria: {hidden:"true"}, viewBox: '0 0 24 24', fill: 'none', stroke: "currentColor", class: 'w-6 h-6') %>
         </div>
@@ -25,7 +25,7 @@
           <p class="block text-2xl font-bold"><%= @managers.count %></p>
         </section>
       </article>
-      <article class="flex items-center p-8 bg-white shadow rounded-lg">
+      <article class="flex items-center p-8 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
           <%= svg_icon('people', xmlns: 'http://www.w3.org/2000/svg', aria: {hidden:"true"}, viewBox: '0 0 24 24', fill: 'none', stroke: "currentColor", class: 'w-6 h-6') %>
         </div>
@@ -34,7 +34,7 @@
           <p class="block text-2xl font-bold"><%= @teams.count %></p>
         </section>
       </article>
-      <article class="flex items-center p-8 bg-white shadow rounded-lg">
+      <article class="flex items-center p-8 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
           <%= svg_icon('people', xmlns: 'http://www.w3.org/2000/svg', aria: {hidden:"true"}, viewBox: '0 0 24 24', fill: 'none', stroke: "currentColor", class: 'w-6 h-6') %>
         </div>
@@ -43,7 +43,7 @@
           <p class="block text-2xl font-bold"><%= @tbd_employees.count %></p>
         </section>
       </article>
-      <article class="row-span-3 bg-white shadow rounded-lg">
+      <article class="row-span-3 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
           <h3>Employees</h3>
         </header>
@@ -65,7 +65,7 @@
           </ul>
         </section>
       </article>
-      <article class="row-span-3 bg-white shadow rounded-lg">
+      <article class="row-span-3 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
           <h3>Managers</h3>
         </header>
@@ -87,7 +87,7 @@
           </ul>
         </section>
       </article>
-      <article class="row-span-3 bg-white shadow rounded-lg">
+      <article class="row-span-3 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
         <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
           <h3>Teams</h3>
         </header>
@@ -110,7 +110,7 @@
         </section>
       </article>
       <% if @tbd_employees.present? || @tbd_dpt.present?%>
-        <article class="row-span-3 bg-white shadow rounded-lg">
+        <article class="row-span-3 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
           <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
             <h3 class="font-semibold">FOR ACTION - Information to be defined</h3>
           </header>
