@@ -28,11 +28,11 @@ class Employee < ApplicationRecord
     end
     
     def self.ransackable_attributes(_auth_object = nil)
-        %w[first_name last_name]
+        %w[first_name last_name city country ]
     end
     
     def self.ransackable_associations(auth_object = nil)
-        ["avatar_attachment", "avatar_blob", "department", "payslip", "position", "team"]
+        ["avatar_attachment", "avatar_blob", "department", "payslip", "user", "position", "team"]
     end
     
     private
