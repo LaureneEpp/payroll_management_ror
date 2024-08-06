@@ -4,17 +4,7 @@
   </header>
   <main class="flex flex-col overflow-y-auto px-5 py-3">
     <article class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 py-6" >
-      <% @employees.each do |e| %>
-        <button data-box="<%= e.id%>" class="taxation-button btn-ouline box flex items-center p-8 bg-white shadow rounded-lg">
-            <article class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
-              <%= svg_icon('person', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', class: 'w-8 h-8') %>
-            </article>
-            <article class="text-start">   
-              <p class="block text-2xl font-bold"><%= link_to e.fullname, e %></p>
-              <p class="block text-gray-500"><%= e.team.name %></p>
-            </article>
-        </button>
-      <% end %>
+      <%= render 'employees/employees'%>
     </article>
   </main>
 </div>
