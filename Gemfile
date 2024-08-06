@@ -53,7 +53,8 @@ gem 'country_select', '~> 9.0'
 gem "devise"
 
 #use gem for search engine
-gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
+gem 'ransack'
+gem 'byebug'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

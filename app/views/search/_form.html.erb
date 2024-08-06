@@ -1,0 +1,4 @@
+<%= search_form_for @q, url: search_path, method: :get, html: {class:'flex flex-row text-[15px] w-full bg-transparent focus:outline-none', role: "search"  } do |f| %>
+    <%= f.search_field :first_name_or_last_name_cont, class: 'form-control rounded-md', placeholder: "Search..." %>
+    <%= f.submit 'Search', class:"ml-2 rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-medium-gray hover:bg-medium-gray hover:text-white sm:mt-0 sm:w-auto" %>
+<% end %>
