@@ -3,7 +3,8 @@ class TeamsController < ApplicationController
   before_action :set_department, only: %i[ show ]
 
   def index
-    @teams = Team.all.order('name ASC')
+    @tbd_team = Team.where(name: 'TBD')
+    @teams = Team.all.order('name ASC').excluding(@tbd_team)
   end
 
   def show
