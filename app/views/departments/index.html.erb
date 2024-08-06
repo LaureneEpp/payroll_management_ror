@@ -8,8 +8,8 @@
   <main class="flex flex-col overflow-y-auto px-5">
     <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 py-6" >
       <% @departments.each do |d| %>
-        <%= link_to department_path(d), class: "btn-ouline box flex items-center p-8 bg-white shadow rounded-lg", data: { turbo_frame: "modal"} do %>
-          <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6">
+        <%= link_to department_path(d), class: "btn-ouline box flex items-center p-8 bg-white  shadow-lg hover:shadow-xl drop-shadow-xl rounded-lg", data: { turbo_frame: "modal"} do %>
+          <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-dark-purple bg-light-purple rounded-full mr-6 ">
             <%= svg_icon('departments', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', class: 'w-8 h-8', aria:{hidden:true}) %>
           </div>
           <article>
