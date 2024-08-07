@@ -50,7 +50,7 @@
                         <% if @user.employee.tbd_team? %>
                             <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= @user.employee.team.name.capitalize %></p>
                         <% else %>
-                            <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= @user.employee.team.name.capitalize %> in <%= @user.employee.department.name.capitalize %></p>
+                            <p class="flex items-start text-gray-500 break-all overflow-hidden">  <%= link_to "#{@user.employee.team.name.capitalize} in #{@user.employee.department.name.capitalize}", department_team_path(@user.employee.department, @user.employee.team) %></p>
                         <% end %>
                         
                     </section>
