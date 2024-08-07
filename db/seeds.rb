@@ -15,8 +15,6 @@ Department.delete_all
 
 puts "🌱 Seeding..."
 
-User.create(email: "admin@admin.org", password:"admin", role: 2)
-puts "Created admin user"
 
 # Create Departments
 Department.create(name: 'TBD')
@@ -39,6 +37,31 @@ puts "#{Team.count} teams have been created."
 # Create Positions
 10.times { Position.create!(name: Faker::Company.profession) }
 puts "#{Position.count} positions have been created."
+
+
+1.times do
+  team_id = Team.pluck(:id).sample
+  position_id = Position.pluck(:id).sample
+  user = User.create!(
+    username: "admin",
+    email: "admin@admin.org",
+    password: 'password',
+    password_confirmation: 'password', 
+    role: 2
+  )
+  employee = Employee.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: user.email,
+    manager: Faker::Boolean.boolean,
+    team_id: team_id,
+    position_id: position_id,
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    user: user
+  )
+  puts "Admin user created with user '#{user.email}'"
+end
 
 # Create Employees
 10.times do
