@@ -15,6 +15,9 @@ Department.delete_all
 
 puts "🌱 Seeding..."
 
+User.create(email: "admin@admin.org", password:"admin", role: 2)
+puts "Created admin user"
+
 # Create Departments
 Department.create(name: 'TBD')
 10.times { Department.create(name: Faker::Company.department) }
