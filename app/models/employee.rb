@@ -8,6 +8,7 @@ class Employee < ApplicationRecord
   
   has_one_attached :avatar
   after_commit :add_default_avatar, on: %i[create update]
+  accepts_nested_attributes_for :user
   
     before_validation :set_default_values
 

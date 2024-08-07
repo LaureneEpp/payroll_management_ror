@@ -8,10 +8,10 @@ class User < ApplicationRecord
   
   protected 
 
-  enum role: [:user, :manager, :admin]
+  enum role: [:standard, :manager, :admin]
 
  def set_default_role
-   self.role ||= :user
+   self.role ||= :standard
  end
 
 end
