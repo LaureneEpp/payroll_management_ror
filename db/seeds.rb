@@ -65,25 +65,25 @@ end
 puts "#{Employee.count} employees have been created."
 
 # Create Allowances
-10.times do
-  allowance = Allowance.create(
-    name: Faker::Lorem.word,
-    description: Faker::Lorem.sentence(word_count: 3),
-    amount: rand(1..500)
-  )
-  puts "Allowance '#{allowance.name}' created"
-end
-puts "#{Allowance.count} allowances have been created."
+# 10.times do
+#   allowance = Allowance.create(
+#     name: Faker::Lorem.word,
+#     description: Faker::Lorem.sentence(word_count: 3),
+#     amount: rand(1..500)
+#   )
+#   puts "Allowance '#{allowance.name}' created"
+# end
+# puts "#{Allowance.count} allowances have been created."
 
 # Create Deductions
-10.times do
-  deduction = Deduction.create(
-    name: Faker::Lorem.word,
-    description: Faker::Lorem.sentence(word_count: 3),
-    amount: rand(1..500)
-  )
-  puts "Deduction '#{deduction.name}' created"
-end
-puts "#{Deduction.count} deductions have been created."
+# 10.times do
+#   deduction = Deduction.create(
+#     name: Faker::Lorem.word,
+#     description: Faker::Lorem.sentence(word_count: 3),
+#     amount: rand(1..500)
+#   )
+#   puts "Deduction '#{deduction.name}' created"
+# end
+# puts "#{Deduction.count} deductions have been created."
 
 puts "✅ Done seeding!"

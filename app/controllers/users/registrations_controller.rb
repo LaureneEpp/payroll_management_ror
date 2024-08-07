@@ -45,11 +45,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id]])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role, employee_attributes: [:first_name, :last_name, :city, :country, :team_id, :position_id]])
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id]])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password, :role, employee_attributes: [:first_name, :last_name, :city, :country, :team_id, :position_id]])
   end
 
   def after_sign_up_path_for(resource)
@@ -72,11 +72,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, employee_attributes: [:first_name, :last_name, :city, :country, :manager, :team_id, :position_id])
+    params.require(:user).permit(:email, :password, :password_confirmation, :role, employee_attributes: [:first_name, :last_name, :city, :country, :team_id, :position_id])
   end
 
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, employee_attributes: [:id, :first_name, :last_name, :city, :country, :manager, :team_id, :position_id, :_destroy])
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :role, employee_attributes: [:id, :first_name, :last_name, :city, :country, :team_id, :position_id, :_destroy])
   end
 end
 
