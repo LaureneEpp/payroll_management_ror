@@ -18,6 +18,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
+    @employee.build_user unless @employee.user
   end
 
   def create
@@ -34,9 +35,14 @@ class EmployeesController < ApplicationController
 
   def update
     if @employee.update(employee_params)
-      redirect_to employee_path(@employee), notice: "Employee was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        if @employee.save
+          format.turbo_stream
+          format.html { redirect_to employee_path(@employee), notice: "Employee was successfully created." }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+        end
+      end
     end
   end
 
@@ -55,6 +61,6 @@ class EmployeesController < ApplicationController
     end
 
     def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :email, :city, :country, :manager, :team_id, :position_id, user_attributes: [:email, :password, :password_confirmation])
+      params.require(:employee).permit(:first_name, :last_name, :email, :city, :country, :team_id, :position_id, user_attributes: [:id, :email, :password, :password_confirmation, :role])
     end
 end

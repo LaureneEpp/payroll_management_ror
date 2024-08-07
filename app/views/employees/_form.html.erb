@@ -10,9 +10,22 @@
     <fieldset class="flex flex-col  mt-4">
       <%= f.collection_select :team_id, Team.all, :id, :name, prompt: "Select a team", default: 'To be defined', wrapper_html: { class: 'text-base font-medium py-2'}, required: false   %>
       <%= f.collection_select :position_id, Position.all, :id, :name, prompt: "Select a position", default: 'To be defined', required: false %>
-      <p class="py-2 font-semibold">Is the new employee a manager?</p>
-      <%= f.input :manager, as: :boolean, default: false, input_html: { unchecked: false, class:'mx-2' } %>
     </fieldset>
+    <% if current_user.admin? || current_user.manager?%>
+      <fieldset class="mt-4">
+        <p class="py-2 font-semibold">Select the role for the new employee:</p>
+        <%= f.simple_fields_for :user do |u| %>
+          <div class="mt-2 flex flex-row flex-wrap items-center ">
+            <% User.roles.keys.each do |role| %>
+            <label class="flex items-center mr-4">
+              <%= u.radio_button :role, role, checked: (@employee.user.role == role), class: "mr-2" %>
+              <%= role.capitalize %>
+            </label>
+            <% end %>
+          </div>
+        <% end %>
+      </fieldset>
+    <% end %>
     <fieldset class="mt-4 sm:flex sm:flex-row">
       <%= link_to 'Cancel', employees_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>  
       <%= f.submit 'Ok?', class:"ml-2 rounded-md px-4 py-2 text-sm font-semibold text-medium-emerald shadow-sm ring-1 ring-inset ring-medium-emerald hover:bg-medium-emerald hover:text-white sm:mt-0 sm:w-auto"%>

@@ -8,7 +8,7 @@
         <section class="py-6 flex flex-col items-center">
             <h2 class=" text-2xl font-bold tracking-widest uppercase"><%= @employee.fullname.capitalize %></h2>
             <h3 class=" text-1xl font-semibold tracking-widest"><%= @employee.department.name.capitalize %></h3>
-            <% if @employee == current_user.employee %>
+            <% if current_user.admin? || current_user.manager? %>
                 <%= link_to edit_employee_path(@employee), data: { turbo_frame: "new_modal" } do %>
                     <%= svg_icon('edit', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', stroke_width:1.5, class:"w-6 h-6 text-1xl font-bold tracking-widest text-rose-red") %>
                 <% end %>
@@ -66,7 +66,7 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Manager?</h4>
-                        <p class="flex items-start text-gray-500"><%= @employee.manager %></p>
+                        <p class="flex items-start text-gray-500"><%= @employee.user.manager? %></p>
                     </section>
                 </article>
             </section>       
