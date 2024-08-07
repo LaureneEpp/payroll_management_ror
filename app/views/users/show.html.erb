@@ -14,7 +14,7 @@
             <% end %>
         </section>
     </header>
-    <main class="flex flex-col overflow-y-auto p-6 bg-light-purple shadow-2xl shadow-purple-500/50 rounded-md">
+    <main class="flex flex-col overflow-y-auto p-6 m-8 bg-light-purple shadow-2xl shadow-purple-500/50 rounded-md">
         <section class="flex flex-col my-3">
             <h3 class="flex items-start my-4 text-2xl font-light ">Personal data</h3>
             <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -24,7 +24,7 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Location</h4>
-                        <p class="flex items-start text-gray-500"><%= @user.employee.city.capitalize %>|<%= @user.employee.country %></p>
+                        <p class="flex items-start"><%= @user.employee.city.capitalize %>|<%= @user.employee.country %></p>
                     </section>
                 </article>
                 <article class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -33,7 +33,7 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Email</h4>
-                        <p class="flex items-start text-gray-500"><%= @user.email.downcase %></p>
+                        <p class="flex items-start"><%= @user.email.downcase %></p>
                     </section>
                 </article>
             </section>
@@ -48,9 +48,9 @@
                     <section>
                         <h4 class="flex text-xl font-bold">Team</h4>
                         <% if @user.employee.tbd_team? %>
-                            <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= @user.employee.team.name.capitalize %></p>
+                            <p class="flex items-start break-all overflow-hidden"><%= @user.employee.team.name.capitalize %></p>
                         <% else %>
-                            <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= @user.employee.team.name.capitalize %> in <%= @user.employee.department.name.capitalize %></p>
+                            <p class="flex items-start break-all overflow-hidden">  <%= link_to "#{@user.employee.team.name.capitalize} in #{@user.employee.department.name.capitalize}", department_team_path(@user.employee.department, @user.employee.team) %></p>
                         <% end %>
                         
                     </section>
@@ -61,7 +61,7 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Position</h4>
-                        <p class="flex items-start text-gray-500"><%= @user.employee.position.name.capitalize %></p>
+                        <p class="flex items-start"><%= @user.employee.position.name.capitalize %></p>
                     </section>
                 </article>
                 <article class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -70,7 +70,7 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Manager?</h4>
-                        <p class="flex items-start text-gray-500"><%= @user.employee.manager %></p>
+                        <p class="flex items-start"><%= @user.employee.manager %></p>
                     </section>
                 </article>
             </section>       
