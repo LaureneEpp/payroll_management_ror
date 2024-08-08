@@ -30,7 +30,7 @@
                     <section>
                         <h4 class="flex text-xl font-bold">Manager</h4>
                         <% if @team_manager.present? %>
-                            <p class="flex items-start text-gray-500"><%= @team_manager.first_name.capitalize %> <%= @team_manager.last_name.capitalize %></p>
+                            <p class="flex items-start text-gray-500"><%= link_to @team_manager.fullname, employee_path(@team_manager) %></p>
                         <% else %>
                             <p class="flex items-start text-gray-500 break-words">Who is it?</p>
                         <% end %>
