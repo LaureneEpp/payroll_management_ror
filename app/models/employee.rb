@@ -1,16 +1,20 @@
 class Employee < ApplicationRecord
   belongs_to :user
   belongs_to :team, optional: true
+  belongs_to :position, optional: true
+  
   has_many :payslip
   
   has_one :department, through: :team
   belongs_to :position, optional: true
-  
+
+  validates :first_name, :last_name, :email, :user, presence: true
+
   has_one_attached :avatar
   after_commit :add_default_avatar, on: %i[create update]
   accepts_nested_attributes_for :user
   
-    before_validation :set_default_values
+  before_validation :set_default_values
 
     def fullname
         "#{first_name.capitalize} #{last_name.capitalize}"
@@ -47,9 +51,9 @@ class Employee < ApplicationRecord
           content_type: "image/jpg",
         )
     end
-    
-      def set_default_values
-        self.position ||= Position.find_or_create_by(name: 'TBD')
-        self.team ||= Team.find_or_create_by(name: 'TBD')
-      end
+
+  def set_default_values
+    self.position ||= Position.find_or_create_by(name: 'TBD')
+    self.team ||= Team.find_or_create_by(name: 'TBD')
+  end
 end

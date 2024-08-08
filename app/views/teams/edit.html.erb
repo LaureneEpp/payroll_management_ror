@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "new_modal" do %>
+  <div id="overlay" class="fixed inset-0 z-10" data-controller="modal" data-modal-target="frame">
+    <dialog class="modal bg-white" style="width: 75%; border-radius: 5px" data-modal-target="modal">
+      <header>
+        <h1 id="modal-title" class="font-bold text-3xl text-center uppercase p-4">Edit team</h1>
+        <hr>
+      </header>
+        <%= render "form", team: @team %>
+    </dialog>
+  </div>
+<% end %>

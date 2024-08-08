@@ -3,6 +3,11 @@
         <section class="py-6 flex flex-col items-center">
             <h2 class="text-2xl font-bold tracking-widest uppercase"><%= @team.name %></h2>
             <h3 class="text-1xl font-semibold tracking-widest"><%= @team.department.name %></h3>
+            <% if current_user.admin? || current_user.manager? %>
+                <%= link_to edit_team_path(@team), data: { turbo_frame: "new_modal" } do %>
+                    <%= svg_icon('edit', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', stroke_width:1.5, class:"w-6 h-6 text-1xl font-bold tracking-widest text-rose-red") %>
+                <% end %>
+            <% end %>
         </section>
     </header>
     <main class="flex flex-col overflow-y-auto p-6 bg-light-purple shadow-2xl shadow-purple-500/50 rounded-md">
@@ -29,10 +34,10 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Manager</h4>
-                        <% if @team_manager.present? %>
-                            <p class="flex items-start text-gray-500"><%= link_to @team_manager.fullname, employee_path(@team_manager) %></p>
+                        <% if @team.leader %>
+                            <p class="flex items-start text-gray-500"><%= link_to @team.leader.fullname, employee_path(@team.leader) %></p>
                         <% else %>
-                            <p class="flex items-start text-gray-500 break-words">Who is it?</p>
+                            <p class="flex items-start text-gray-500 break-words">No manager assigned.</p>
                         <% end %>
                     </section>
                 </article>

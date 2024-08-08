@@ -1,20 +1,15 @@
 class Team < ApplicationRecord
     has_many :employees
     belongs_to :department
+    belongs_to :leader, class_name: 'Employee', foreign_key: 'user_id', optional: true
 
     validates :name, uniqueness: true
-    # enum :name, { 
-    #     "HR": 0, 
-    #     "Accounting": 1,
-    #     "Financial controller": 2,
-    #     "Legal": 3, 
-    #     "IT Project management": 4, 
-    #     "Project team": 5,
-    #     "Help Desk": 6,
-    #     "Client Support": 7,
-    #     "IT Architecture": 8,
-    #     "IT Applications": 9,
-    #     "Managers": 10, 
-    #     "Top Management": 11
-    # }
+
+
+    def update_leader_roles(new_leader_id, previous_leader_id = nil)
+        User.find(new_leader_id).update(role: 'manager')
+        if previous_leader_id && previous_leader_id != new_leader_id
+          User.find(previous_leader_id).update(role: 'standard')
+        end
+    end
 end
