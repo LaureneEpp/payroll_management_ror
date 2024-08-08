@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[ show ]
+  before_action :set_team, only: %i[ show edit update ]
   before_action :set_department, only: %i[ show ]
 
   def index
@@ -8,22 +8,41 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team_manager = Employee.find_by(team_id: @team)
+    @team_manager = Employee.find_by(user_id: @team.user_id)
   end
 
   def new
     @team = Team.new
   end
 
+  def edit
+  end
+
   def create
     @team = Team.new(team_params)
     respond_to do |format|
       if @team.save
-        format.turbo_stream
         format.html { redirect_to departments_path, notice: "Team was successfully created." }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update
+    previous_leader_id = @team.user_id
+    new_leader_id = team_params[:user_id]
+
+    respond_to do |format|
+      @team.update_leader_roles(new_leader_id, previous_leader_id)
+      if @team.update(team_params)
+        format.html { redirect_to department_team_path(@team, @team.department), notice: "Team was successfully updated." }
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
+        end
     end
   end
 
@@ -38,6 +57,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :description, :department_id)
+    params.require(:team).permit(:name, :description, :department_id, :user_id)
   end
 end

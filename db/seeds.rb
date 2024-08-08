@@ -49,11 +49,10 @@ puts "#{Position.count} positions have been created."
     password_confirmation: 'password', 
     role: 2
   )
-  employee = Employee.create!(
+   Employee.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: user.email,
-    manager: Faker::Boolean.boolean,
     team_id: team_id,
     position_id: position_id,
     city: Faker::Address.city,
@@ -76,7 +75,6 @@ end
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: user.email,
-    manager: Faker::Boolean.boolean,
     team_id: team_id,
     position_id: position_id,
     city: Faker::Address.city,
