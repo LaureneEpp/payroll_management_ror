@@ -48,7 +48,7 @@
                     </div>
                     <section>
                         <h4 class="flex text-xl font-bold">Team</h4>
-                        <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= link_to @employee.team.name.capitalize, department_team_path(@employee) %></p>
+                        <p class="flex items-start text-gray-500 break-all overflow-hidden"><%= link_to @employee.team.name.capitalize, department_team_path( @employee.team.department, @employee.team) %></p>
                     </section>
                 </article>
                 <article class="flex items-center p-8 bg-white shadow rounded-lg">
