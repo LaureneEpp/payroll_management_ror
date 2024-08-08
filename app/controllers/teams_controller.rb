@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team_manager = Employee.find_by(team_id: @team, manager: true)
+    @team_manager = Employee.find_by(team_id: @team)
   end
 
   def new

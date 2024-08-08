@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @payslip = Payslip.where(employe_id: @employee)
+    # @payslip = Payslip.where(employe_id: @employee)
   end
 
   def new
