@@ -1,4 +1,14 @@
 <%= simple_form_for @team, html: { class: " p-2 mt-3"}, data: { turbo: false } do |f| %>
+  <% if @team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <ul>
+        <% @team.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <form>
     <fieldset class="form-inputs">
       <%= f.input :name, input_html: { autocomplete: false }, label_html: { class: 'text-base font-medium py-2'}  %>
