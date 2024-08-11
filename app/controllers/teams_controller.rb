@@ -22,6 +22,7 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     respond_to do |format|
       if @team.save
+        @team.update_leader_roles(@team.user_id)
         format.html { redirect_to departments_path, notice: "Team was successfully created." }
         format.turbo_stream
       else

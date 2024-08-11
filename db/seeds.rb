@@ -15,7 +15,6 @@ Department.delete_all
 
 puts "🌱 Seeding..."
 
-
 # Create Departments
 Department.create(name: 'TBD')
 10.times { Department.create(name: Faker::Company.department) }
@@ -47,7 +46,7 @@ puts "#{Position.count} positions have been created."
     email: "admin@admin.org",
     password: 'password',
     password_confirmation: 'password', 
-    role: 2
+    role: 'admin'
   )
    Employee.create!(
     first_name: Faker::Name.first_name,
