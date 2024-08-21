@@ -7,18 +7,21 @@ class Team < ApplicationRecord
     validate :unique_manager_per_team
 
     def update_leader_roles(new_leader_id, previous_leader_id = nil)
-        User.find(new_leader_id).update(role: 'manager')
-        if previous_leader_id && previous_leader_id != new_leader_id
-          User.find(previous_leader_id).update(role: 'standard')
+      User.find(new_leader_id).update(role: 1) 
+      if previous_leader_id && previous_leader_id != new_leader_id
+        previous_leader = User.find(previous_leader_id)
+        unless Team.exists?(user_id: previous_leader.id)
+          previous_leader.update(role: 0)
         end
+      end
     end
     
     private
 
     def unique_manager_per_team
-        if Team.where(user_id: leader) .exists? && user_id != self.user_id
-          # errors.add(:user_id, 'is already a manager of another team')
-          flash[:notice] = 'is already a manager of another team'
-        end
+      if Team.where(user_id: user_id).where.not(id: id).exists?
+        errors.add(:user_id, 'is already a manager of another team')
+      end
     end
 end
+
