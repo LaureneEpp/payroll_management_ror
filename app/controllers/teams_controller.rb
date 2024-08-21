@@ -24,7 +24,8 @@ class TeamsController < ApplicationController
       if @team.save
         @team.update_leader_roles(@team.user_id)
         format.html { redirect_to departments_path, notice: "Team was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Team was successfully created." }
+
       else
         format.html { render :new, status: :unprocessable_entity }
       end

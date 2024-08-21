@@ -26,8 +26,10 @@ export function showPopup() {
             </div>
         </div>
     </div>`;
+
   document.body.appendChild(div);
   setTimeout(() => {
     div.remove();
   }, 5000);
+    
 }
