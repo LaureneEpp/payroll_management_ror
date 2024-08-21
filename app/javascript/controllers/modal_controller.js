@@ -4,8 +4,7 @@ export default class extends Controller {
   static targets = ["modal", "frame"]
   
   close(event) {
-      event.preventDefault();
-
+    event.preventDefault();
     this.modalTarget.remove()
     this.frameTarget.remove()
   }
