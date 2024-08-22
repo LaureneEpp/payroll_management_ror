@@ -1,9 +1,6 @@
-# Clear existing data
 require 'faker'
 
-# Ensure data deletion respects foreign key constraints
-# PayslipAllowance.delete_all
-# PayslipDeduction.delete_all
+# Clear existing data
 Payslip.delete_all
 Employee.delete_all
 User.delete_all
@@ -20,50 +17,93 @@ Department.create(name: 'TBD')
 10.times { Department.create(name: Faker::Company.department) }
 puts "#{Department.count} departments have been created."
 
-# Create Teams
-Team.create(name: 'TBD', description: 'Abc', department_id: Department.first.id)
-10.times do
-  department_id = Department.pluck(:id).sample
-  team = Team.create(
-    name: Faker::Lorem.word,
-    description: Faker::Lorem.sentence(word_count: 3),
-    department_id: department_id
-  )
-  puts "Team '#{team.name}' created"
-end
-puts "#{Team.count} teams have been created."
-
 # Create Positions
 10.times { Position.create!(name: Faker::Company.profession) }
 puts "#{Position.count} positions have been created."
 
-
-1.times do
-  team_id = Team.pluck(:id).sample
-  position_id = Position.pluck(:id).sample
+# Create Users
+users = []
+20.times do
   user = User.create!(
-    username: "admin",
-    email: "admin@admin.org",
+    email: Faker::Internet.email,
     password: 'password',
-    password_confirmation: 'password', 
-    role: 'admin'
+    password_confirmation: 'password',
+    role: 0 # default role for regular users
   )
-   Employee.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: user.email,
-    team_id: team_id,
-    position_id: position_id,
-    city: Faker::Address.city,
-    country: Faker::Address.country,
-    user: user
-  )
-  puts "Admin user created with user '#{user.email}'"
+  users << user
 end
+puts "#{User.count} users have been created."
+
+# Create Teams
+teams = []
+10.times do
+  department_id = Department.pluck(:id).sample
+
+  # Find a user who is not already a manager of another team
+  leader_user = users.detect { |user| Team.where(user_id: user.id).none? }
+
+  if leader_user
+    begin
+      team = Team.create!(
+        name: Faker::Lorem.unique.word,  # Ensure unique team name
+        description: Faker::Lorem.sentence(word_count: 3),
+        department_id: department_id,
+        user_id: leader_user.id
+      )
+      teams << team
+      puts "Team '#{team.name}' created with leader user '#{leader_user.email}'."
+    rescue ActiveRecord::RecordInvalid => e
+      puts "Failed to create team: #{e.message}"
+      redo  # Retry with a new name if it fails
+    end
+  else
+    # Create a team without a leader if no eligible user is found
+    team = Team.create!(
+      name: Faker::Lorem.unique.word,  # Ensure unique team name
+      description: Faker::Lorem.sentence(word_count: 3),
+      department_id: department_id,
+      user_id: nil
+    )
+    teams << team
+    puts "Team '#{team.name}' created without a leader."
+  end
+end
+
+puts "#{Team.count} teams have been created."
+
+# Create Admin User
+admin_user = User.create!(
+  username: "admin",
+  email: "admin@admin.org",
+  password: 'password',
+  password_confirmation: 'password',
+  role: 2 # role for admin or manager
+)
+puts "Admin user created with email '#{admin_user.email}'"
+
+# Create the TBD team with the admin as the leader
+tbd_team = Team.create!(
+  name: 'TBD',
+  description: 'Abc',
+  department_id: Department.first.id,
+  user_id: admin_user.id
+)
+
+Employee.create!(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  email: admin_user.email,
+  team_id: tbd_team.id,
+  position_id: Position.pluck(:id).sample,
+  city: Faker::Address.city,
+  country: Faker::Address.country,
+  user: admin_user
+)
+puts "Admin user associated with the TBD team."
 
 # Create Employees
 10.times do
-  team_id = Team.pluck(:id).sample
+  team_id = teams.sample.id
   position_id = Position.pluck(:id).sample
   user = User.create!(
     email: Faker::Internet.email,
@@ -80,30 +120,8 @@ end
     country: Faker::Address.country,
     user: user
   )
-  puts "Employee '#{employee.first_name} #{employee.last_name}' created with user '#{user.email}'"
+  puts "Employee '#{employee.first_name} #{employee.last_name}' created with user '#{user.email}'."
 end
 puts "#{Employee.count} employees have been created."
-
-# Create Allowances
-# 10.times do
-#   allowance = Allowance.create(
-#     name: Faker::Lorem.word,
-#     description: Faker::Lorem.sentence(word_count: 3),
-#     amount: rand(1..500)
-#   )
-#   puts "Allowance '#{allowance.name}' created"
-# end
-# puts "#{Allowance.count} allowances have been created."
-
-# Create Deductions
-# 10.times do
-#   deduction = Deduction.create(
-#     name: Faker::Lorem.word,
-#     description: Faker::Lorem.sentence(word_count: 3),
-#     amount: rand(1..500)
-#   )
-#   puts "Deduction '#{deduction.name}' created"
-# end
-# puts "#{Deduction.count} deductions have been created."
 
 puts "✅ Done seeding!"

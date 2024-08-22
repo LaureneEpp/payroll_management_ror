@@ -22,10 +22,8 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     respond_to do |format|
       if @team.save
-        @team.update_leader_roles(@team.user_id)
-        format.html { redirect_to departments_path, notice: "Team was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Team was successfully created." }
-
+        format.html { redirect_to departments_path }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -33,23 +31,20 @@ class TeamsController < ApplicationController
   end
 
   def update
-    previous_leader_id = @team.user_id
-    new_leader_id = team_params[:user_id]
 
     respond_to do |format|
-      @team.update_leader_roles(new_leader_id, previous_leader_id)
-      if @team.update(team_params)
-        format.html { redirect_to department_team_path(@team, @team.department), notice: "Team was successfully updated." }
+    if @team.update(team_params)
+        format.html { redirect_to department_team_path(@team.department, @team)}
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.turbo_stream { render :edit, status: :unprocessable_entity }
-        end
+      end
     end
   end
-
-  private
   
+  private
+
   def set_department
     @department = Department.find(params[:department_id])
   end
