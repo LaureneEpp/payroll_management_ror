@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.save
         format.turbo_stream
-        format.html { redirect_to employee_path(@employee), notice: "Employee was successfully created." }
+        format.html { redirect_to employee_path(@employee)}
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -38,7 +38,7 @@ class EmployeesController < ApplicationController
       respond_to do |format|
         if @employee.save
           format.turbo_stream
-          format.html { redirect_to employee_path(@employee), notice: "Employee was successfully created." }
+          format.html { redirect_to employee_path(@employee) }
         else
           format.html { render :edit, status: :unprocessable_entity }
         end

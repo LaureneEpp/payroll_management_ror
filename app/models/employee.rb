@@ -43,6 +43,6 @@ class Employee < ApplicationRecord
 
   def set_default_values
     self.position = 'TBD' if position.blank?
-    self.department = 'TBD' if posidepartmenttion.blank?
+    self.department = 'TBD' if department.blank?
   end
 end
