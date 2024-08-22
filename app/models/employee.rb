@@ -42,7 +42,7 @@ class Employee < ApplicationRecord
     end
 
   def set_default_values
-    self.position = 'TBD' if position.blank?
-    self.department = 'TBD' if department.blank?
+    self.position ||= Position.find_or_create_by(name: 'TBD')
+    self.team ||= Team.find_or_create_by(name: 'TBD')
   end
 end
