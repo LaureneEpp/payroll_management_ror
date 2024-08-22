@@ -2,8 +2,6 @@ class Employee < ApplicationRecord
   belongs_to :user
   belongs_to :team, optional: true
   belongs_to :position, optional: true
-
-  has_many :payslip
   
   has_one :department, through: :team
 
@@ -23,14 +21,6 @@ class Employee < ApplicationRecord
         avatar.variant(resize_to_limit: [300,300]).processed
     end
       
-    def tbd_team?
-        self.team.name == 'TBD'
-    end
-    
-    def tbd_position?
-        self.position.name == 'TBD'
-    end
-
     def self.ransackable_attributes(_auth_object = nil)
       %w[first_name last_name]
     end
@@ -52,7 +42,7 @@ class Employee < ApplicationRecord
     end
 
   def set_default_values
-    self.position ||= Position.find_or_create_by(name: 'TBD')
-    self.team ||= Team.find_or_create_by(name: 'TBD')
+    self.position = 'TBD' if position.blank?
+    self.department = 'TBD' if posidepartmenttion.blank?
   end
 end
