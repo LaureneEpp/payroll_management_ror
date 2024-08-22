@@ -2,8 +2,6 @@ class Employee < ApplicationRecord
   belongs_to :user
   belongs_to :team, optional: true
   belongs_to :position, optional: true
-
-  has_many :payslip
   
   has_one :department, through: :team
 
@@ -16,21 +14,13 @@ class Employee < ApplicationRecord
   before_validation :set_default_values
 
   def fullname
-    "#{first_name.to_s.capitalize} #{last_name.to_s.capitalize}"
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
     
     def avatar_thumbnail
         avatar.variant(resize_to_limit: [300,300]).processed
     end
       
-    def tbd_team?
-        self.team.name == 'TBD'
-    end
-    
-    def tbd_position?
-        self.position.name == 'TBD'
-    end
-
     def self.ransackable_attributes(_auth_object = nil)
       %w[first_name last_name]
     end

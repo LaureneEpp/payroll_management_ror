@@ -9,7 +9,6 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    # @payslip = Payslip.where(employe_id: @employee)
   end
 
   def new
@@ -23,10 +22,16 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+
+    if @employee.user.present?
+      @employee.user.email = @employee.email
+      @employee.user.password = "password" unless @employee.user.password.present?
+      @employee.user.password_confirmation = "password" unless @employee.user.password_confirmation.present?
+    end
     respond_to do |format|
       if @employee.save
         format.turbo_stream
-        format.html { redirect_to employee_path(@employee), notice: "Employee was successfully created." }
+        format.html { redirect_to employee_path(@employee)}
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -38,7 +43,7 @@ class EmployeesController < ApplicationController
       respond_to do |format|
         if @employee.save
           format.turbo_stream
-          format.html { redirect_to employee_path(@employee), notice: "Employee was successfully created." }
+          format.html { redirect_to employee_path(@employee) }
         else
           format.html { render :edit, status: :unprocessable_entity }
         end
