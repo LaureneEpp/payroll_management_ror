@@ -110,7 +110,7 @@
         </section>
       </article>
       <% if @tbd_employees.present? || @teams_without_manager.present? || @managers_without_team.present? %>
-        <article class="row-span-3 bg-white shadow-lg hover:shadow-2xl drop-shadow-xl rounded-lg">
+        <article class="row-span-3 bg-dark-rose shadow-xl hover:shadow-2xl drop-shadow-2xl rounded-lg text-white">
           <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
             <h3 class="font-semibold">FOR ACTION - Information to be defined</h3>
           </header>
@@ -168,10 +168,7 @@
                 <% end %>
               </ul>
             </section>
-          
           <% end %>
-          
-          <% console%>
         </article>
       <% end %>
     </section>
