@@ -1,4 +1,11 @@
 <%= simple_form_for @employee, html: { class: " p-2 mt-3"}, data: { turbo: false } do |f| %>
+
+<% if @employee.errors.any? %>
+  <% @employee.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
   <form>
     <fieldset class="form-inputs">
       <%= f.input :first_name, input_html: { autocomplete: false }, label_html: { class: 'text-base font-medium py-2'} %>

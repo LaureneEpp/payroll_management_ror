@@ -9,7 +9,6 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    # @payslip = Payslip.where(employe_id: @employee)
   end
 
   def new
@@ -23,6 +22,12 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+
+    if @employee.user.present?
+      @employee.user.email = @employee.email
+      @employee.user.password = "password" unless @employee.user.password.present?
+      @employee.user.password_confirmation = "password" unless @employee.user.password_confirmation.present?
+    end
     respond_to do |format|
       if @employee.save
         format.turbo_stream

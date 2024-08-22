@@ -14,7 +14,7 @@ class Employee < ApplicationRecord
   before_validation :set_default_values
 
   def fullname
-    "#{first_name.to_s.capitalize} #{last_name.to_s.capitalize}"
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
     
     def avatar_thumbnail
