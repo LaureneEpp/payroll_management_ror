@@ -35,7 +35,7 @@
                     <section>
                         <h4 class="flex text-xl font-bold">Manager</h4>
                         <% if @team.leader %>
-                            <p class="flex items-start text-gray-500"><%= link_to @team.leader.fullname, employee_path(@team.leader) %></p>
+                            <p class="flex items-start text-gray-500"><%= link_to @team.leader.employee.fullname, employee_path(@team.leader) %></p>
                         <% else %>
                             <p class="flex items-start text-gray-500 break-words">No manager assigned.</p>
                         <% end %>
@@ -43,6 +43,7 @@
                 </article>
             </section>
         </section>
+        <%= console%>
         <section class="flex flex-col my-3">
             <h3 class="flex items-start my-4 mx-2 text-2xl font-light ">Team members</h3>
             <section class="row-span-3 bg-white shadow rounded-lg">

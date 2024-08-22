@@ -2,11 +2,10 @@ class Employee < ApplicationRecord
   belongs_to :user
   belongs_to :team, optional: true
   belongs_to :position, optional: true
-  
+
   has_many :payslip
   
   has_one :department, through: :team
-  belongs_to :position, optional: true
 
   validates :first_name, :last_name, :email, :user, presence: true
 
@@ -16,9 +15,9 @@ class Employee < ApplicationRecord
   
   before_validation :set_default_values
 
-    def fullname
-        "#{first_name.capitalize} #{last_name.capitalize}"
-    end
+  def fullname
+    "#{first_name.to_s.capitalize} #{last_name.to_s.capitalize}"
+  end
     
     def avatar_thumbnail
         avatar.variant(resize_to_limit: [300,300]).processed

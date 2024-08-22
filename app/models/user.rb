@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
- after_initialize :set_default_role, if: :new_record?
+ 
+  enum role: { standard: 0, manager: 1, admin: 2 }
+  after_initialize :set_default_role, if: :new_record?
 
   has_one :employee, dependent: :destroy
   has_many :led_teams, class_name: 'Team', foreign_key: 'user_id'
@@ -9,10 +11,8 @@ class User < ApplicationRecord
   
   protected 
 
-  enum role: [:standard, :manager, :admin]
 
- def set_default_role
-   self.role ||= :standard
- end
-
+  def set_default_role
+    self.role ||= :standard
+  end
 end
