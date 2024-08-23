@@ -54,7 +54,8 @@ gem "devise"
 
 #use gem for search engine
 gem 'ransack'
-gem 'byebug'
+gem 'byebug', group: [:development, :test]
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
