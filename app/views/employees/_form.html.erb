@@ -18,7 +18,7 @@
       <%= f.collection_select :team_id, Team.all, :id, :name, prompt: "Select a team", default: 'To be defined', wrapper_html: { class: 'text-base font-medium py-2'}, required: false   %>
       <%= f.collection_select :position_id, Position.all, :id, :name, prompt: "Select a position", default: 'To be defined', required: false %>
     </fieldset>
-    <% if current_user.admin? || current_user.manager?%>
+    <% if current_user.admin?%>
       <fieldset class="mt-4">
         <p class="py-2 font-semibold">Select the role for the new employee:</p>
         <%= f.simple_fields_for :user do |u| %>
