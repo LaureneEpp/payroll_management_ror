@@ -109,68 +109,74 @@
           </ul>
         </section>
       </article>
-      <% if @tbd_employees.present? || @teams_without_manager.present? || @managers_without_team.present? %>
         <article class="row-span-3 bg-dark-rose shadow-xl hover:shadow-2xl drop-shadow-2xl rounded-lg text-white">
           <header class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
             <h3 class="font-semibold">FOR ACTION - Information to be defined</h3>
           </header>
-          <section class="overflow-y-auto" style="max-height: 24rem;">
-            <ul class="p-6 space-y-6">
-              <h3 class="font-medium underline underline-offset-8">Employees with no team</h3>
-              <% @tbd_employees.each do |employee| %>
-                <li class="flex items-center">
-                  <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                    <%= image_tag(employee.avatar, class: "w-full h-full object-cover") %>
-                  </figure>
-                <% if user_signed_in?%>
-                  <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
-                <% else %>
-                  <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= employee.fullname %></a></p>                
-                <% end %>
-                  <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
-                </li>
-              <% end %>
-            </ul>
-          </section>
-          <% if @managers_without_team.present?%>
-            <section class="overflow-y-auto" style="max-height: 24rem;">
-              <ul class="p-6 space-y-6">
-              <h3 class="font-medium underline underline-offset-8">Managers without team</h3>
-                <% @managers_without_team.each do |employee| %>
-                  <li class="flex items-center">
-                    <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-                      <%= image_tag(employee.avatar, class: "w-full h-full object-cover") %>
-                    </figure>
-                  <% if user_signed_in?%>
-                    <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
-                  <% else %>
-                    <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= employee.fullname %></a></p>                
+          <% if user_signed_in? %>
+            <% if @tbd_employees.present?%>
+              <section class="overflow-y-auto" style="max-height: 24rem;">
+                <ul class="p-6 space-y-6">
+                  <h3 class="font-medium underline underline-offset-8">Employees with no team</h3>
+                  <% @tbd_employees.each do |employee| %>
+                    <li class="flex items-center">
+                      <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                        <%= image_tag(employee.avatar, class: "w-full h-full object-cover") %>
+                      </figure>
+                    <% if user_signed_in?%>
+                      <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
+                    <% else %>
+                      <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= employee.fullname %></a></p>                
+                    <% end %>
+                      <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
+                    </li>
                   <% end %>
-                    <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
-                  </li>
-                <% end %>
-              </ul>
-            </section>
-          <% end %>
-          <% if @teams_without_manager.present?%>
-            <section class="overflow-y-auto" style="max-height: 24rem;">
-              <ul class="p-6 space-y-6">
-              <h3 class="font-medium underline underline-offset-8">Teams without manager</h3>
-                <% @teams_without_manager.each do |no_manager_team| %>
-                  <li class="flex items-center">
-                  <% if user_signed_in?%>
-                    <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to no_manager_team.name, department_team_path(no_manager_team.department, no_manager_team) %></p>
-                  <% else %>
-                    <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= no_manager_team.name %></a></p>                
+                </ul>
+              </section>
+            <% end %>
+            <% if @managers_without_team.present?%>
+              <section class="overflow-y-auto" style="max-height: 24rem;">
+                <ul class="p-6 space-y-6">
+                <h3 class="font-medium underline underline-offset-8">Managers without team</h3>
+                  <% @managers_without_team.each do |employee| %>
+                    <li class="flex items-center">
+                      <figure class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
+                        <%= image_tag(employee.avatar, class: "w-full h-full object-cover") %>
+                      </figure>
+                    <% if user_signed_in?%>
+                      <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to employee.fullname, employee_path(employee) %></p>
+                    <% else %>
+                      <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= employee.fullname %></a></p>                
+                    <% end %>
+                      <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= employee.department.name %></p>
+                    </li>
                   <% end %>
-                    <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= no_manager_team.department.name %></p>
-                  </li>
-                <% end %>
-              </ul>
-            </section>
+                </ul>
+              </section>
+            <% end %>
+            <% if @teams_without_manager.present?%>
+              <section class="overflow-y-auto" style="max-height: 24rem;">
+                <ul class="p-6 space-y-6">
+                <h3 class="font-medium underline underline-offset-8">Teams without manager</h3>
+                  <% @teams_without_manager.each do |no_manager_team| %>
+                    <li class="flex items-center">
+                    <% if user_signed_in?%>
+                      <p class="flex-1 w-1/2 break-words text-gray-600"><%= link_to no_manager_team.name, department_team_path(no_manager_team.department, no_manager_team) %></p>
+                    <% else %>
+                      <p class="flex-1 w-1/2 break-words text-gray-600"><a href="#" onclick="showPopup(); return false;"><%= no_manager_team.name %></a></p>                
+                    <% end %>
+                      <p class="flex-1 w-1/2 break-words text-end  ml-auto font-semibold"><%= no_manager_team.department.name %></p>
+                    </li>
+                  <% end %>
+                </ul>
+              </section>
+            <% end %>
+          <% else%>
+              <section class="overflow-y-auto p-6 h-full flex items-center justify-center" style="max-height: 24rem;">
+                <p class="font-medium"><a href="#" onclick="showPopup(); return false;">Details are missing! Records required your action!</a></p>
+              </section>
           <% end %>
         </article>
-      <% end %>
     </section>
   </main>
 </div>
