@@ -1,55 +1,57 @@
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put}, data: { turbo: false }   ) do |f| %>
     <%= f.error_notification %>
-    <%= f.simple_fields_for :employee do |employee_fields| %>
-      <div class="form-inputs">
-        <%= employee_fields.input :first_name,
-                                  required: true,
-                                  input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
-                                  label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
-                                  wrapper_html: {class: "mt-2"} %>
-        <%= employee_fields.input :last_name,
-                                  required: true,
-                                  input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
-                                  label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
-                                  wrapper_html: {class: "mt-2"} %>
-        <%= employee_fields.input :city,
-                                  input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
-                                  label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
-                                  wrapper_html: {class: "mt-2"} %>
-        <%= employee_fields.input :country,
-                                  input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
-                                  label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
-                                  wrapper_html: {class: "mt-2"} %>
-        <% if current_user.admin? || current_user.manager?%>
-          <%= employee_fields.input :team_id, collection: Team.all, label_method: :name, value_method: :id %>
-          <%= employee_fields.input :position_id, collection: Position.all, label_method: :name, value_method: :id %>    
-        <% end %>
-      </div>
-    <% end %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
-                    label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
-                    wrapper_html: {class: "mt-2"} %>
-        <% if current_user%>
-          <%= f.input :password,
+    <form>
+      <%= f.simple_fields_for :employee do |employee_fields| %>
+        <fieldset class="form-inputs">
+          <%= employee_fields.input :first_name,
+                                    required: true,
+                                    input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                                    label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
+                                    wrapper_html: {class: "mt-2"} %>
+          <%= employee_fields.input :last_name,
+                                    required: true,
+                                    input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                                    label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
+                                    wrapper_html: {class: "mt-2"} %>
+          <%= employee_fields.input :city,
+                                    input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                                    label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
+                                    wrapper_html: {class: "mt-2"} %>
+          <%= employee_fields.input :country,
+                                    input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                                    label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
+                                    wrapper_html: {class: "mt-2"} %>
+          <% if current_user.admin? || current_user.manager?%>
+            <%= employee_fields.input :team_id, collection: Team.all, label_method: :name, value_method: :id %>
+            <%= employee_fields.input :position_id, collection: Position.all, label_method: :name, value_method: :id %>    
+          <% end %>
+        </fieldset>
+      <% end %>
+        <fieldset class="form-inputs">
+          <%= f.input :email,
                       required: true,
-                      input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                      autofocus: true,
+                      input_html: { class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
                       label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
                       wrapper_html: {class: "mt-2"} %>
-          <%= f.input :password_confirmation,
-                      required: true,
-                      input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
-                      label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
-                      wrapper_html: {class: "mt-2"} %>
-        <% end %>
-    </div>
+          <% if current_user%>
+            <%= f.input :password,
+                        required: true,
+                        input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                        label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
+                        wrapper_html: {class: "mt-2"} %>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" }, 
+                        label_html: {class:"block text-sm font-medium leading-6 text-gray-900"},
+                        wrapper_html: {class: "mt-2"} %>
+          <% end %>
+      </fieldset>
 
-    <div class="form-actions">
-      <%= link_to 'Cancel', profile_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>  
-      <%= f.submit 'Update', class:  "text-medium-emerald bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-medium-emerald hover:bg-medium-emerald hover:text-white focus:ring-4 focus:ring-medium-emerald no-underline inline-block" %>
-    </div>
+      <fieldset class="form-actions">
+        <%= link_to 'Cancel', profile_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>  
+        <%= f.submit 'Update', class:  "text-medium-emerald bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-medium-emerald hover:bg-medium-emerald hover:text-white focus:ring-4 focus:ring-medium-emerald no-underline inline-block" %>
+      </fieldset>
+    </form>
   <% end %>
 
