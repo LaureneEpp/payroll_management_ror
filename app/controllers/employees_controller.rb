@@ -6,6 +6,8 @@ class EmployeesController < ApplicationController
   def index
     @q = Employee.ransack(params[:q])
     @employees = @q.result(distinct: true).order('last_name ASC')
+    @standard_employees = @employees.joins(:user).where(users:{role: 0})
+    @managers = @employees.joins(:user).where(users:{role: 1})
   end
 
   def show
