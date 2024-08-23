@@ -16,6 +16,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  # def create
+  #   build_resource(sign_up_params)
+  #   resource.build_employee
+    
+  #   resource.save
+  
+  #   respond_to do |format|
+  #     if resource.persisted?
+  #       if resource.active_for_authentication?
+  #         sign_up(resource_name, resource)
+  #         format.turbo_stream 
+  #         format.html { redirect_to after_sign_up_path_for(resource) }
+  #       else
+  #         # set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+  #         expire_data_after_sign_in!
+  #         format.turbo_stream
+  #         format.html { redirect_to after_inactive_sign_up_path_for(resource) }
+  #       end
+  #     else
+  #       # clean_up_passwords resource
+  #       # set_minimum_password_length
+  #       format.turbo_stream 
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
+  
+
   # GET /resource/edit
   def edit
     super
