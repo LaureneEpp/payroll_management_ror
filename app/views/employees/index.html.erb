@@ -1,7 +1,9 @@
 <div class="flex flex-col p-6 sm:p-10 space-y-6 relative h-screen w-screen">
   <header class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between my-3 px-5">
       <h2 class="text-4xl font-semibold">Employees Dashboard</h2>
-      <%= link_to 'New employee', new_employee_path, data: { turbo_frame: "new_modal" }, class:"flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded m-auto" %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'New employee', new_employee_path, data: { turbo_frame: "new_modal" }, class:"flex justify-center text-white bg-rose-red hover:bg-dark-rose font-bold py-2 px-4 rounded m-auto" %>
+      <% end %>
   </header>
   <main class="flex flex-col overflow-y-auto px-5 py-3">
     <article class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 py-6" >
