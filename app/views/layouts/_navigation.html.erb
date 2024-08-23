@@ -33,10 +33,10 @@
               <%= link_to departments_path, class:"rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" do %>
                 <%= svg_icon('departments', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', class: 'w-8 h-8', aria:{hidden:true}) %>
               <% end %>
-            <% if user_signed_in? %>
               <%= link_to teams_path, class:"rounded-md px-3 py-2 text-sm font-medium text-light-purple hover:text-light-gray" do %>
                 <%= svg_icon('teams', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', class: 'w-8 h-8') %>
               <% end %>
+            <% if user_signed_in? %>
               <div class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer" >
                 <%= render 'search/form' %>
               </div>
