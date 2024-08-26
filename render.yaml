@@ -1,5 +1,5 @@
 databases:
-  - name: postgres
+  - name: payroll-management-db
     ipAllowList: []
     databaseName: payroll-management-db
     user: app_user
