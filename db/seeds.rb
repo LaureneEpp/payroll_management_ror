@@ -1,11 +1,8 @@
 require 'faker'
 
 # Clear existing data
-Payslip.delete_all
 Employee.delete_all
 User.delete_all
-Allowance.delete_all
-Deduction.delete_all
 Position.delete_all
 Team.delete_all
 Department.delete_all
