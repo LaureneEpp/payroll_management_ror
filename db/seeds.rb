@@ -33,11 +33,24 @@ puts "#{User.count} users have been created."
 
 # Create Teams
 teams = []
+managers = []
+10.times do
+  manager = User.create!(
+    email: Faker::Internet.email,
+    password: 'password',
+    password_confirmation: 'password',
+    role: 1 # default role for regular users
+  )
+  managers << manager
+end
+puts "#{User.count} managers have been created."
+
 10.times do
   department_id = Department.pluck(:id).sample
 
+rescue
   # Find a user who is not already a manager of another team
-  leader_user = users.detect { |user| Team.where(user_id: user.id).none? }
+  leader_user = managers.detect { |user| Team.joins(:user).where(user_id: user.id).none? }
 
   if leader_user
     begin
