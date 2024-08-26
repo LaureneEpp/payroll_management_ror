@@ -10,6 +10,7 @@ services:
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
+    plan: free
     envVars:
       - key: DATABASE_URL
         fromDatabase:
