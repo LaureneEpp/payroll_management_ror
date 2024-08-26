@@ -48,24 +48,23 @@ puts "#{User.count} managers have been created."
 10.times do
   department_id = Department.pluck(:id).sample
 
-rescue
   # Find a user who is not already a manager of another team
   leader_user = managers.detect { |user| Team.where(user_id: user.id).none? }
 
   if leader_user
-    begin
+    
       team = Team.create!(
         name: Faker::Lorem.unique.word,  # Ensure unique team name
         description: Faker::Lorem.sentence(word_count: 3),
         department_id: department_id,
         user_id: leader_user.id
       )
-      teams << team
-      puts "Team '#{team.name}' created with leader user '#{leader_user.email}'."
-    rescue ActiveRecord::RecordInvalid => e
-      puts "Failed to create team: #{e.message}"
-      redo  # Retry with a new name if it fails
-    end
+      if team.persisted?
+        teams << team
+        puts "Team '#{team.name}' created with leader user '#{leader_user.email}'."
+      else
+        puts "Failed to create team: #{e.message}"
+      end
   else
     # Create a team without a leader if no eligible user is found
     team = Team.create!(

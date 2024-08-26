@@ -19,7 +19,7 @@ class Team < ApplicationRecord
       return unless user_id.present?
   
       user = User.find(user_id)
-      unless user.manager?
+      unless user.manager? || user.admin?
         errors.add(:user_id, 'selected does not have a manager role.')
       end
     end
