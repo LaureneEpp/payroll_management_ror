@@ -1,21 +1,23 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: payroll_management
-    user: payroll_management
+    databaseName: payroll-management
+    user: payroll-management
 
 services:
   - type: web
-    name: payroll_management
+    name: payroll-management
+    runtime: ruby
     env: ruby
+    region: frankfurt
+    plan: free
+    autoDeploy: false
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
-    plan: free
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: postgres
           property: connectionStrin
-          plan: free
       - key: RAILS_MASTER_KEY
         sync: false
