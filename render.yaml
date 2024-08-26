@@ -3,7 +3,6 @@ databases:
     ipAllowList: []
     databaseName: payroll_management_app
     user: app_user
-    plan: free
 
 services:
   - type: web
