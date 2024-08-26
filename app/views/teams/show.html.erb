@@ -67,7 +67,14 @@
                             </li>
                         <% end %>
                     <% else %>
-                        <p class="font-semibold">You need to add members to this team</p>
+                        <div class="flex flex-row justify-center">
+                            <p class="font-semibold self-center px-2">You need to add members to this team</p>
+                            <% if user_signed_in? && current_user.admin? %>
+                                <%= link_to new_employee_path, data: { turbo_frame: "new_modal" } do %>
+                                    <%= svg_icon('plus', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: "currentColor", class: 'w-8 h-8 text-1xl font-semibold text-rose-red') %>              
+                                <% end %>
+                            <% end %>
+                        </div>
                     <% end %>
                     </ul> 
                 </article>
