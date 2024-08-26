@@ -1,12 +1,12 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: payroll_managgement
-    user: payroll_managgement
+    databaseName: payroll_management
+    user: payroll_management
 
 services:
   - type: web
-    name: payroll_managgement
+    name: payroll_management
     env: ruby
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
