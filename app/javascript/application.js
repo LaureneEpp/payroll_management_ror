@@ -2,4 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import { showPopup } from "./components/popup";
+import { showFlashMessage } from "./components/flash_message";
 window.showPopup = showPopup;

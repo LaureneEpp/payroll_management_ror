@@ -19,7 +19,8 @@
       <%= f.collection_select :user_id, Employee.joins(:user).where(users: { role: User.roles[:manager] }), :user_id, :fullname, 
                             label_html: { class: 'text-base font-medium py-2' }, 
                             prompt: "Select a manager", 
-                            wrapper_html: { class: 'rounded-md py-2' } %>
+                            wrapper_html: { class: 'rounded-md py-2' },
+                            html: {id:"team-leader-select"} %>
     </fieldset>
     <fieldset class="mt-4 sm:flex sm:flex-row">
       <%= link_to "Cancel", departments_path, data: { turbo: false, action: "modal#close" }, class: "text-rose-red bg-white rounded px-4 py-2 text-center font-medium ring-1 ring-inset ring-rose-red hover:bg-rose-red hover:text-white focus:ring-4 focus:ring-rose-red no-underline inline-block" %>
