@@ -1,7 +1,8 @@
 databases:
   - name: postgres
+    property: connectionString
     ipAllowList: []
-    databaseName: payroll-management_app
+    databaseName: payroll_management_app
     user: app_user
     plan: free
 
