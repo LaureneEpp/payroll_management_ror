@@ -1,2 +1,0 @@
-class AllowancesController < ApplicationController
-end

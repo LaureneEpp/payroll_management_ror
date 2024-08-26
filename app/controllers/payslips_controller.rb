@@ -1,2 +1,0 @@
-class PayslipsController < ApplicationController
-end
