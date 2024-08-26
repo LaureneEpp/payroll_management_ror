@@ -1,6 +1,5 @@
 databases:
   - name: postgres
-    property: connectionString
     ipAllowList: []
     databaseName: payroll_management_app
     user: app_user
