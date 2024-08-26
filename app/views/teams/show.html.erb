@@ -32,16 +32,16 @@
                     <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-green-800 bg-green-200 rounded-full mr-6">
                         <%= svg_icon('people', xmlns: 'http://www.w3.org/2000/svg', aria: {hidden:"true"}, viewBox: '0 0 24 24', fill: 'none', stroke: "currentColor", class: 'w-6 h-6') %>
                     </div>
-                    <section>
+                    <section >
                         <h4 class="flex text-xl font-bold">Manager</h4>
                         <% if @team.leader %>
                             <% if user_signed_in?%>
-                                <p class="flex items-start text-gray-500"><%= link_to @team.leader.employee.fullname, employee_path(@team.leader.employee) %></p>
+                                <p class=" team-leader flex items-start text-gray-500"><%= link_to @team.leader.employee.fullname, employee_path(@team.leader.employee) %></p>
                             <% else %>
-                                <p class="flex items-start text-gray-500"><a href="#" onclick="showPopup(); return false;"><%= @team.leader.employee.fullname %></a></p>
+                                <p class=" team-leader  flex items-start text-gray-500"><a href="#" onclick="showPopup(); return false;"><%= @team.leader.employee.fullname %></a></p>
                             <% end %>
                         <% else %>
-                            <p class="flex items-start text-gray-500 break-words">No manager assigned.</p>
+                            <p class="team-leader flex items-start text-gray-500 break-words">No manager assigned.</p>
                         <% end %>
                     </section>
                 </article>

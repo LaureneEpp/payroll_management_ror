@@ -25,7 +25,7 @@ module ApplicationHelper
       when 'position'
         content_tag(:path, '', d:"M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z", fill_rule: "evenodd", clip_rule: "evenodd")
       when 'location'
-        content_tag(:path, '', d:"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" ,stroke_linecap: "round", stroke_linejoin: "round") +
+        content_tag(:path, '', d:"M15 10.5a3 3 0 11-6 0 3 3 0 016 0z", stroke_linecap: "round", stroke_linejoin: "round") +
         content_tag(:path, '', d:"M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" ,stroke_linecap: "round", stroke_linejoin: "round")
       when 'email'
         content_tag(:path, '', d:"M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25", stroke_linecap:"round")
@@ -33,6 +33,8 @@ module ApplicationHelper
         content_tag(:path, '', d:"M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z", stroke_linecap: "round", stroke_linejoin: "round", stroke_width: "2" )
       when 'logout'
         content_tag(:path, '', d:"M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9", stroke_linecap: "round", stroke_linejoin: "round", stroke_width: "2" )      
+      when 'info'
+        content_tag(:path, '', d:"M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z", stroke_linecap: "round", stroke_linejoin: "round", stroke_width: "2" )      
       end
     end
   end
