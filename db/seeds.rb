@@ -50,7 +50,7 @@ puts "#{User.count} managers have been created."
 
 rescue
   # Find a user who is not already a manager of another team
-  leader_user = managers.detect { |user| Team.joins(:user).where(user_id: user.id).none? }
+  leader_user = managers.detect { |user| Team.where(user_id: user.id).none? }
 
   if leader_user
     begin
