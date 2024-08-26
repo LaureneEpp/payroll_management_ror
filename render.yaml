@@ -1,7 +1,7 @@
 databases:
   - name: payroll_management_db
-    # ipAllowList: []
     databaseName: payroll_management
+    region: frankfurt
     user: app_user
     plan: free
     
