@@ -1,8 +1,9 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: payroll-management
-    user: payroll-management
+    databaseName: payroll-management_app
+    user: app_user
+    plan: free
 
 services:
   - type: web
